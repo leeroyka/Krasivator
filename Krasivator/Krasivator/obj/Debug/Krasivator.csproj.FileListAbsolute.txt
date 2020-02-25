@@ -1,0 +1,9 @@
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\bin\Debug\Krasivator.exe.config
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\bin\Debug\Krasivator.exe
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\bin\Debug\Krasivator.pdb
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.csprojAssemblyReference.cache
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.Form1.resources
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.Properties.Resources.resources
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.csproj.GenerateResource.cache
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.exe
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.pdb
