@@ -58,6 +58,7 @@
     <Compile Include="formCreate.Designer.cs">
       <DependentUpon>formCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyImage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

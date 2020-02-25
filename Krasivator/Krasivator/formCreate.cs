@@ -16,13 +16,16 @@ namespace Krasivator
         {
             InitializeComponent();
         }
-
         private void formCreate_Load(object sender, EventArgs e)
         {
             menuStrip1.BackColor = Color.FromArgb(255, 36, 47, 61);
             Color colorText = Color.FromArgb(255, 87, 102, 115);
             xToolStripMenuItem.ForeColor = colorText;
             this.BackColor = Color.FromArgb(255, 14, 22, 33);
+            textBox1.BackColor = Color.FromArgb(255, 23, 33, 43);
+            textBox2.BackColor = Color.FromArgb(255, 23, 33, 43);
+            button1.BackColor = Color.FromArgb(255, 39, 105, 153);
+            button2.BackColor = Color.FromArgb(255, 39, 105, 153);
         }
 
         private void xToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,6 +82,26 @@ namespace Krasivator
             {
                 isMouseDown = false;
             }
+        }
+        public string dir = "";
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "Картинки|*.jpg";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    dir = dialog.FileName;
+                    this.Close();
+                }
+            }
+        }
+        public int w = 0, h = 0;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            w = Convert.ToInt32(textBox1.Text);
+            h = Convert.ToInt32(textBox2.Text);
+            this.Close();
         }
     }
 }

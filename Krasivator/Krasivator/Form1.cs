@@ -22,6 +22,30 @@ namespace Krasivator
         {
             formCreate f = new formCreate();
             f.ShowDialog();
+            if (f.dir != "")
+                renderImage(f.dir);
+            if (f.w != 0 || f.h != 0)
+                renderImage(f.w,f.h);
+        }
+        MyImage img,img_out;
+        void renderImage(string dir)
+        {
+                img = new MyImage(dir);
+                var (w, h) = img.getSize();
+                pictureBox1.Image = img.bmp;
+            
+        }
+        void renderImage(int w,int h)
+        {
+            img = new MyImage(w, h);
+            for (int i = 0; i < h; ++i)
+            {
+                for (int j = 0; j < w; ++j)
+                {
+                    img.setPixel(j, i, 255, 255, 255);
+                }
+            }
+            pictureBox1.Image = img.bmp;
             
         }
         void setDefaultColors()
@@ -95,6 +119,34 @@ namespace Krasivator
                 mousePos.Offset(mouseOffset.X, mouseOffset.Y);
                 Location = mousePos;
             }
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isMouseDown)
+            {
+                Point mousePos = Control.MousePosition;
+                mousePos.Offset(mouseOffset.X, mouseOffset.Y);
+                Location = mousePos;
+            }
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isMouseDown = false;
+            }
+        }
+
+        private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFile();
+        }
+
+        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
