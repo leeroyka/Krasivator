@@ -16,6 +16,13 @@ namespace Krasivator
         {
             InitializeComponent();
             setDefaultColors();
+            openFile();
+        }
+        void openFile()
+        {
+            formCreate f = new formCreate();
+            f.ShowDialog();
+            
         }
         void setDefaultColors()
         {
@@ -23,6 +30,14 @@ namespace Krasivator
             Color colorText = Color.FromArgb(255, 87, 102, 115);
             EditToolStripMenuItem.ForeColor = Color.White;
             FileToolStripMenuItem.ForeColor = Color.White;
+            создатьToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
+            открытьToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
+            сохранитьToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
+            выйтиToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
+            создатьToolStripMenuItem.ForeColor = Color.White;
+            открытьToolStripMenuItem.ForeColor = Color.White;
+            сохранитьToolStripMenuItem.ForeColor = Color.White;
+            выйтиToolStripMenuItem.ForeColor = Color.White;
             xToolStripMenuItem.ForeColor = colorText;
             this.BackColor = Color.FromArgb(255, 14, 22, 33);
             panelLeft.BackColor = Color.FromArgb(255, 22, 33, 43);
@@ -30,6 +45,9 @@ namespace Krasivator
             btnLeftEff.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnLeftEff.ForeColor = Color.White;
             btnLeftInst.ForeColor = Color.White;
+            btnLeftInst.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
+            btnLeftEff.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
+            
         }
         private void xToolStripMenuItem_Click(object sender, EventArgs e)
         {
