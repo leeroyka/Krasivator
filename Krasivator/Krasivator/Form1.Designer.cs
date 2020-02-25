@@ -30,14 +30,14 @@
         {
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLeftInst = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnLeftEff = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.редактированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -47,7 +47,7 @@
             // 
             this.panelLeft.AutoSize = true;
             this.panelLeft.Controls.Add(this.btnLeftInst);
-            this.panelLeft.Controls.Add(this.button2);
+            this.panelLeft.Controls.Add(this.btnLeftEff);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelLeft.Location = new System.Drawing.Point(0, 24);
@@ -59,28 +59,31 @@
             // btnLeftInst
             // 
             this.btnLeftInst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLeftInst.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnLeftInst.Location = new System.Drawing.Point(3, 3);
             this.btnLeftInst.Name = "btnLeftInst";
             this.btnLeftInst.Size = new System.Drawing.Size(50, 50);
             this.btnLeftInst.TabIndex = 0;
-            this.btnLeftInst.Text = "btnLeftInst";
+            this.btnLeftInst.Text = "И";
             this.btnLeftInst.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnLeftEff
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(3, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "btnLeftInst";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnLeftEff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLeftEff.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
+            this.btnLeftEff.Location = new System.Drawing.Point(3, 59);
+            this.btnLeftEff.Name = "btnLeftEff";
+            this.btnLeftEff.Size = new System.Drawing.Size(50, 50);
+            this.btnLeftEff.TabIndex = 1;
+            this.btnLeftEff.Text = "Э";
+            this.btnLeftEff.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.редактированиеToolStripMenuItem,
+            this.FileToolStripMenuItem,
+            this.EditToolStripMenuItem,
             this.xToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -88,17 +91,20 @@
             this.menuStrip1.Size = new System.Drawing.Size(958, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
+            this.menuStrip1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseMove);
+            this.menuStrip1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseUp);
             // 
-            // файлToolStripMenuItem
+            // FileToolStripMenuItem
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создатьToolStripMenuItem,
             this.открытьToolStripMenuItem,
             this.сохранитьToolStripMenuItem,
             this.выйтиToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.FileToolStripMenuItem.Text = "Файл";
             // 
             // создатьToolStripMenuItem
             // 
@@ -124,11 +130,11 @@
             this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             // 
-            // редактированиеToolStripMenuItem
+            // EditToolStripMenuItem
             // 
-            this.редактированиеToolStripMenuItem.Name = "редактированиеToolStripMenuItem";
-            this.редактированиеToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
-            this.редактированиеToolStripMenuItem.Text = "Редактирование";
+            this.EditToolStripMenuItem.Name = "EditToolStripMenuItem";
+            this.EditToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.EditToolStripMenuItem.Text = "Редактирование";
             // 
             // xToolStripMenuItem
             // 
@@ -150,6 +156,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Krasivator";
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.panelLeft.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -162,14 +170,14 @@
 
         private System.Windows.Forms.FlowLayoutPanel panelLeft;
         private System.Windows.Forms.Button btnLeftInst;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnLeftEff;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem создатьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выйтиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem редактированиеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xToolStripMenuItem;
     }
 }
