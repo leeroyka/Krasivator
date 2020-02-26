@@ -280,11 +280,12 @@
             // debug
             // 
             this.debug.AutoSize = true;
+            this.debug.ForeColor = System.Drawing.Color.White;
             this.debug.Location = new System.Drawing.Point(3, 149);
             this.debug.Name = "debug";
-            this.debug.Size = new System.Drawing.Size(35, 13);
+            this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
-            this.debug.Text = "label1";
+            this.debug.Text = "Debug";
             // 
             // Form1
             // 
