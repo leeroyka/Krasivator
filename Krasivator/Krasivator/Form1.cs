@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -103,11 +104,11 @@ namespace Krasivator
             FileToolStripMenuItem.ForeColor = Color.White;
             создатьToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
             открытьToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
-            сохранитьToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
+            saveToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
             выйтиToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
             создатьToolStripMenuItem.ForeColor = Color.White;
             открытьToolStripMenuItem.ForeColor = Color.White;
-            сохранитьToolStripMenuItem.ForeColor = Color.White;
+            saveToolStripMenuItem.ForeColor = Color.White;
             выйтиToolStripMenuItem.ForeColor = Color.White;
             xToolStripMenuItem.ForeColor = colorText;
             this.BackColor = Color.FromArgb(255, 14, 22, 33);
@@ -335,12 +336,53 @@ namespace Krasivator
            
         }
 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
+            saveFileDialog1.Title = "Save an Image File";
+            saveFileDialog1.ShowDialog();
+
+            // If the file name is not an empty string open it for saving.
+            if (saveFileDialog1.FileName != "")
+            {
+                // Saves the Image via a FileStream created by the OpenFile method.
+                System.IO.FileStream fs =
+                    (System.IO.FileStream)saveFileDialog1.OpenFile();
+                // Saves the Image in the appropriate ImageFormat based upon the
+                // File type selected in the dialog box.
+                // NOTE that the FilterIndex property is one-based.
+                switch (saveFileDialog1.FilterIndex)
+                {
+                    case 1:
+
+                        images.Last().bmp.Save(fs,
+                          System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+
+                    case 2:
+                        images.Last().bmp.Save(fs,
+                          System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+
+                    case 3:
+                        images.Last().bmp.Save(fs,
+                          System.Drawing.Imaging.ImageFormat.Gif);
+                        break;
+                }
+
+                fs.Close();
+            }
+        }
+
         private void btnLeftInst_Click(object sender, EventArgs e)
         {
             setInactiveRight();
             panelRightInst.Visible = true;
             setActiveLeft();
-            btnLeftInst.Enabled = true;
+
+            btnLeftInst.Enabled = false;
+            //btnLeftInst.Enabled = true;
         }
 
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
