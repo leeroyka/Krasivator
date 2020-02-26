@@ -50,8 +50,10 @@
             this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormWait";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormWait";
+            this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.FormWait_Load);
             this.ResumeLayout(false);
 

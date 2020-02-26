@@ -87,6 +87,7 @@ namespace Krasivator
         }
         void renderSecondImage(string dir)
         {
+            boxOverlay.SelectedIndex = 0;
             secondImage = new MyImage(dir);
             pictureBox2.Location = new Point(0, 0);
             pictureBox2.Visible = true;
@@ -129,7 +130,20 @@ namespace Krasivator
             btnLeftInst.ForeColor = Color.White;
             btnLeftInst.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
             btnLeftEff.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
+            boxOverlay.BackColor = Color.FromArgb(255, 32, 43, 54);
 
+            //
+            boxOverlay.Items.Add("Нормальный");
+            
+            boxOverlay.Items.Add("Вычитание");
+            
+            boxOverlay.Items.Add("Яркость");
+            boxOverlay.Items.Add("Сложение");
+            boxOverlay.Items.Add("Затемнение");
+            boxOverlay.Items.Add("Светлее");
+            boxOverlay.Items.Add("Умножение");
+            boxOverlay.Items.Add("Темнее");
+            //
             btnLeftInst.Enabled = false;
             panelRightInst.Visible = true;
         }
@@ -304,8 +318,11 @@ namespace Krasivator
                     int _i = i + pictureBox2.Location.Y;
                     if(_j>=0 && _i>=0 && _j<imageW && _i<imageH)
                     {
-
+                        
                         var (_r, _g, _b) = newImage.getPixel(_j, _i);
+                        r = overlay(_r, r);
+                        g = overlay(_g, g);
+                        b = overlay(_b, b);
                         int newR, newG, newB;
                         newR = Convert.ToInt32(((double)(r - _r) / 100) * barOpacity.Value + _r);
                         newG = Convert.ToInt32(((double)(g - _g) / 100) * barOpacity.Value + _g);
@@ -319,6 +336,75 @@ namespace Krasivator
             //pictureBox1.Image = img.bmp;
             saveImage(newImage);
             pictureBox2.Visible = false;
+        }
+        private int overlay(int first,int second)
+        {
+            int c=0;
+            if(boxOverlay.Items[boxOverlay.SelectedIndex].ToString() == "Нормальный")
+            {
+                return second;
+            }
+            if (boxOverlay.Items[boxOverlay.SelectedIndex].ToString() == "Сложение")
+            {
+                c = first + second;
+                if (c > 255)
+                    c = 255;
+                return c;
+            }
+            if (boxOverlay.Items[boxOverlay.SelectedIndex].ToString() == "Вычитание")
+            {
+                c = second - first;
+                if (c < 0)
+                    c = 0;
+                return c;
+            }
+            if (boxOverlay.Items[boxOverlay.SelectedIndex].ToString() == "Умножение")
+            {
+                c = first * second;
+                if (c > 255)
+                    c = 255;
+                return c;
+            }
+            if (boxOverlay.Items[boxOverlay.SelectedIndex].ToString() == "Яркость")
+            {
+                if (first >= second)
+                    return first;
+                else return second;
+                
+                if (c > 255)
+                    c = 255;
+                if (c < 0)
+                    c = 0;
+                return c;
+            }
+            if (boxOverlay.Items[boxOverlay.SelectedIndex].ToString() == "Затемнение")
+            {
+                if (first <= second)
+                    return first;
+                else return second;
+                if (c > 255)
+                    c = 255;
+                if (c < 0)
+                    c = 0;
+                return c;
+            }
+            if (boxOverlay.Items[boxOverlay.SelectedIndex].ToString() == "Светлее")
+            {
+                if (second <= (255 / 2))
+                {
+                    return second;
+                }
+                else return first;
+            }
+            if (boxOverlay.Items[boxOverlay.SelectedIndex].ToString() == "Темнее")
+            {
+                if (second <= (255 / 2))
+                {
+                    return second;
+                }
+                else return first;
+            }
+            return second;
         }
         private void btnLeftEff_Click(object sender, EventArgs e)
         {
@@ -391,6 +477,7 @@ namespace Krasivator
             labelOpacity.Text = barOpacity.Value.ToString() + "%";
         }
 
+       
         private void btnLeftInst_Click(object sender, EventArgs e)
         {
             setInactiveRight();

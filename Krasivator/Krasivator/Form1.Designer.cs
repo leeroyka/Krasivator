@@ -53,6 +53,8 @@
             this.barOpacity = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.labelOpacity = new System.Windows.Forms.Label();
+            this.boxOverlay = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -244,7 +246,7 @@
             this.panelRightConfirm.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelRightConfirm.Location = new System.Drawing.Point(3, 109);
             this.panelRightConfirm.Name = "panelRightConfirm";
-            this.panelRightConfirm.Size = new System.Drawing.Size(200, 104);
+            this.panelRightConfirm.Size = new System.Drawing.Size(200, 148);
             this.panelRightConfirm.TabIndex = 5;
             this.panelRightConfirm.WrapContents = false;
             // 
@@ -254,7 +256,7 @@
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Candara", 9F);
             this.btnConfirm.ForeColor = System.Drawing.Color.White;
-            this.btnConfirm.Location = new System.Drawing.Point(6, 72);
+            this.btnConfirm.Location = new System.Drawing.Point(6, 110);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(188, 30);
@@ -267,7 +269,7 @@
             // 
             this.debug.AutoSize = true;
             this.debug.ForeColor = System.Drawing.Color.White;
-            this.debug.Location = new System.Drawing.Point(3, 216);
+            this.debug.Location = new System.Drawing.Point(3, 260);
             this.debug.Name = "debug";
             this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
@@ -298,12 +300,14 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.boxOverlay);
             this.panel2.Controls.Add(this.labelOpacity);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.barOpacity);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 63);
+            this.panel2.Size = new System.Drawing.Size(200, 101);
             this.panel2.TabIndex = 2;
             // 
             // barOpacity
@@ -328,9 +332,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 14);
+            this.label1.Size = new System.Drawing.Size(97, 14);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Нерозрачность:";
+            this.label1.Text = "Непрозрачность:";
             // 
             // labelOpacity
             // 
@@ -343,6 +347,32 @@
             this.labelOpacity.Size = new System.Drawing.Size(31, 14);
             this.labelOpacity.TabIndex = 1;
             this.labelOpacity.Text = "100%";
+            // 
+            // boxOverlay
+            // 
+            this.boxOverlay.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.boxOverlay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.boxOverlay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.boxOverlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.boxOverlay.Font = new System.Drawing.Font("Candara", 9F);
+            this.boxOverlay.ForeColor = System.Drawing.Color.White;
+            this.boxOverlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.boxOverlay.Location = new System.Drawing.Point(6, 69);
+            this.boxOverlay.Name = "boxOverlay";
+            this.boxOverlay.Size = new System.Drawing.Size(156, 22);
+            this.boxOverlay.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Candara", 9F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 14);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Режим наложения:";
             // 
             // Form1
             // 
@@ -409,6 +439,8 @@
         private System.Windows.Forms.TrackBar barOpacity;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelOpacity;
+        private System.Windows.Forms.ComboBox boxOverlay;
+        private System.Windows.Forms.Label label2;
     }
 }
 
