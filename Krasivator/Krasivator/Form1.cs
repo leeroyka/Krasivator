@@ -60,6 +60,7 @@ namespace Krasivator
         MyImage img,img_out, secondImage;
         void renderImage(string dir)
         {
+            images.Clear();
             img = new MyImage(dir);
             var (w, h) = img.getSize();
             imageW = w;
@@ -69,6 +70,7 @@ namespace Krasivator
         }
         void renderImage(int w,int h)
         {
+            images.Clear();
             img = new MyImage(w, h);
             imageW = w;
             imageH = h;
@@ -88,6 +90,8 @@ namespace Krasivator
             secondImage = new MyImage(dir);
             pictureBox2.Location = new Point(0, 0);
             pictureBox2.Visible = true;
+            barOpacity.Value = 100;
+            labelOpacity.Text = "100%";
             this.BackColor = Color.FromArgb(255, 44, 52, 63);
             panelLeft.BackColor = Color.FromArgb(255, 52, 63, 73);
             panelRight.BackColor = Color.FromArgb(255, 52, 63, 73);
@@ -212,7 +216,7 @@ namespace Krasivator
 
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            images.Clear();
+            
             openFile();
         }
 
@@ -300,7 +304,14 @@ namespace Krasivator
                     int _i = i + pictureBox2.Location.Y;
                     if(_j>=0 && _i>=0 && _j<imageW && _i<imageH)
                     {
-                        newImage.setPixel(_j, _i, r, g, b);
+
+                        var (_r, _g, _b) = newImage.getPixel(_j, _i);
+                        int newR, newG, newB;
+                        newR = Convert.ToInt32(((double)(r - _r) / 100) * barOpacity.Value + _r);
+                        newG = Convert.ToInt32(((double)(g - _g) / 100) * barOpacity.Value + _g);
+                        newB = Convert.ToInt32(((double)(b - _b) / 100) * barOpacity.Value + _b);
+
+                        newImage.setPixel(_j, _i, newR, newG, newB);
                     }
                 }
             }
@@ -373,6 +384,11 @@ namespace Krasivator
 
                 fs.Close();
             }
+        }
+
+        private void barOpacity_Scroll(object sender, EventArgs e)
+        {
+            labelOpacity.Text = barOpacity.Value.ToString() + "%";
         }
 
         private void btnLeftInst_Click(object sender, EventArgs e)
