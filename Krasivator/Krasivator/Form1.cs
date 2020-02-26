@@ -29,7 +29,7 @@ namespace Krasivator
             if (f.w != 0 || f.h != 0)
                 renderImage(f.w,f.h);
         }
-        MyImage img,img_out;
+        MyImage img,img_out, secondImage;
         void renderImage(string dir)
         {
             img = new MyImage(dir);
@@ -57,9 +57,15 @@ namespace Krasivator
         }
         void renderSecondImage(string dir)
         {
-            MyImage simg = new MyImage(dir);
+            secondImage = new MyImage(dir);
+            pictureBox2.Location = new Point(0, 0);
             pictureBox2.Visible = true;
-            pictureBox2.Image = simg.bmp;
+            this.BackColor = Color.FromArgb(255, 44, 52, 63);
+            panelLeft.BackColor = Color.FromArgb(255, 52, 63, 73);
+            panelRight.BackColor = Color.FromArgb(255, 52, 63, 73);
+            FileToolStripMenuItem.Enabled = false;
+            EditToolStripMenuItem.Enabled = false;
+            pictureBox2.Image = secondImage.bmp;
         }
         void setDefaultColors()
         {
@@ -225,8 +231,34 @@ namespace Krasivator
             setActiveLeft();
             btnLeftInst.Enabled = false;
             panelRightInst.Visible = true;
+            this.BackColor = Color.FromArgb(255, 14, 22, 33);
+            panelLeft.BackColor = Color.FromArgb(255, 22, 33, 43);
+            panelRight.BackColor = Color.FromArgb(255, 22, 33, 43);
+            FileToolStripMenuItem.Enabled = true;
+            EditToolStripMenuItem.Enabled = true;
+            drawPictureBox();
         }
+        private void drawPictureBox()
+        {
 
+           // MyImage secondImage = new MyImage(pictureBox2.ImageLocation);
+            var (w, h) = secondImage.getSize();
+            for (int i = 0; i < h; ++i)
+            {
+                for (int j = 0; j < w; ++j)
+                {
+                    var (r, g, b) = secondImage.getPixel(j, i);
+                    int _j = j + pictureBox2.Location.X;
+                    int _i = i + pictureBox2.Location.Y;
+                    if(_j>=0 && _i>=0 && _j<imageW && _i<imageH)
+                    {
+                        img.setPixel(_j, _i, r, g, b);
+                    }
+                }
+            }
+            pictureBox1.Image = img.bmp;
+            pictureBox2.Visible = false;
+        }
         private void btnLeftEff_Click(object sender, EventArgs e)
         {
             setInactiveRight();
