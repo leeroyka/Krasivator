@@ -48,6 +48,7 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.debug = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -183,6 +184,7 @@
             this.panelRight.AutoSize = true;
             this.panelRight.Controls.Add(this.panelRightInst);
             this.panelRight.Controls.Add(this.panelRightConfirm);
+            this.panelRight.Controls.Add(this.debug);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRight.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelRight.Location = new System.Drawing.Point(752, 24);
@@ -275,6 +277,15 @@
             this.panel1.Size = new System.Drawing.Size(693, 591);
             this.panel1.TabIndex = 5;
             // 
+            // debug
+            // 
+            this.debug.AutoSize = true;
+            this.debug.Location = new System.Drawing.Point(3, 149);
+            this.debug.Name = "debug";
+            this.debug.Size = new System.Drawing.Size(35, 13);
+            this.debug.TabIndex = 6;
+            this.debug.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -285,9 +296,13 @@
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Krasivator";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.panelLeft.ResumeLayout(false);
@@ -295,6 +310,7 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelRight.ResumeLayout(false);
+            this.panelRight.PerformLayout();
             this.panelRightInst.ResumeLayout(false);
             this.panelRightConfirm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -327,6 +343,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel panelRightConfirm;
         private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.Label debug;
     }
 }
 

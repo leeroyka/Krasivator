@@ -20,15 +20,32 @@ namespace Krasivator
             InitializeComponent();
             setInactiveRight();
             setDefaultColors();
-            openFile();
 
             images = new List<MyImage>();
+            openFile();
+
             frmWait = new FormWait();
             
         }
         void saveImage(MyImage image)
         {
             images.Add(image);
+            if(images.Count>8)
+            {
+                images.RemoveAt(0);
+            }
+            pictureBox1.Image = image.bmp;
+        }
+        void controlZ()
+        {
+            if(images.Count>1)
+            {
+
+                images.RemoveAt(images.Count-1);
+                pictureBox1.Image = images.ElementAt(images.Count - 1).bmp;
+                
+                //images.RemoveAt(0);
+            }
         }
         void openFile()
         {
@@ -46,8 +63,8 @@ namespace Krasivator
             var (w, h) = img.getSize();
             imageW = w;
             imageH = h;
-            pictureBox1.Image = img.bmp;
-            
+            //pictureBox1.Image = img.bmp;
+            saveImage(img);
         }
         void renderImage(int w,int h)
         {
@@ -62,8 +79,8 @@ namespace Krasivator
                     img.setPixel(j, i, 255, 255, 255);
                 }
             }
-            pictureBox1.Image = img.bmp;
-            
+            saveImage(img);
+
         }
         void renderSecondImage(string dir)
         {
@@ -194,6 +211,7 @@ namespace Krasivator
 
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            images.Clear();
             openFile();
         }
 
@@ -264,8 +282,11 @@ namespace Krasivator
         {
             
             wait();
-           // MyImage secondImage = new MyImage(pictureBox2.ImageLocation);
             var (w, h) = secondImage.getSize();
+            //MyImage newImage = images.Last();
+            MyImage newImage = new MyImage(images.Last().bmp.Width, images.Last().bmp.Height);
+            newImage.bmp = (Bitmap)images.Last().bmp.Clone();
+            //pictureBox3.Image = images.Last().bmp;
             for (int i = 0; i < h; ++i)
             {
                 double c = 100/(double)h;
@@ -278,12 +299,13 @@ namespace Krasivator
                     int _i = i + pictureBox2.Location.Y;
                     if(_j>=0 && _i>=0 && _j<imageW && _i<imageH)
                     {
-                        img.setPixel(_j, _i, r, g, b);
+                        newImage.setPixel(_j, _i, r, g, b);
                     }
                 }
             }
             unWait();
-            pictureBox1.Image = img.bmp;
+            //pictureBox1.Image = img.bmp;
+            saveImage(newImage);
             pictureBox2.Visible = false;
         }
         private void btnLeftEff_Click(object sender, EventArgs e)
@@ -291,6 +313,26 @@ namespace Krasivator
             setInactiveRight();
             setActiveLeft();
             btnLeftEff.Enabled = false;
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ($"{ e.KeyCode}" == "Z" && $"{e.Modifiers}" == "Control")
+            {
+                controlZ();
+                debug.Text = "LOL";
+            }
+            
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+           
         }
 
         private void btnLeftInst_Click(object sender, EventArgs e)
