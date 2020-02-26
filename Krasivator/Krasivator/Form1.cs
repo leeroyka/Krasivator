@@ -13,12 +13,22 @@ namespace Krasivator
     public partial class Form1 : Form
     {
         int imageW, imageH;
+        FormWait frmWait;
+        List<MyImage> images;
         public Form1()
         {
             InitializeComponent();
             setInactiveRight();
             setDefaultColors();
             openFile();
+
+            images = new List<MyImage>();
+            frmWait = new FormWait();
+            
+        }
+        void saveImage(MyImage image)
+        {
+            images.Add(image);
         }
         void openFile()
         {
@@ -238,13 +248,29 @@ namespace Krasivator
             EditToolStripMenuItem.Enabled = true;
             drawPictureBox();
         }
+        private void wait()
+        {
+            frmWait.Show(this);
+        }
+        private void wait(int value)
+        {
+            frmWait.setValue(value);
+        }
+        private void unWait()
+        {
+            frmWait.Hide();
+        }
         private void drawPictureBox()
         {
-
+            
+            wait();
            // MyImage secondImage = new MyImage(pictureBox2.ImageLocation);
             var (w, h) = secondImage.getSize();
             for (int i = 0; i < h; ++i)
             {
+                double c = 100/(double)h;
+                frmWait.setValue((int)(c * i));
+                wait((int)(c * i));
                 for (int j = 0; j < w; ++j)
                 {
                     var (r, g, b) = secondImage.getPixel(j, i);
@@ -256,6 +282,7 @@ namespace Krasivator
                     }
                 }
             }
+            unWait();
             pictureBox1.Image = img.bmp;
             pictureBox2.Visible = false;
         }

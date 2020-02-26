@@ -8,3 +8,4 @@ C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Kra
 C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.exe
 C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.pdb
 C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.formCreate.resources
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.FormWait.resources
