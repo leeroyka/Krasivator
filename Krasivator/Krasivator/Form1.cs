@@ -66,8 +66,11 @@ namespace Krasivator
             imageW = w;
             imageH = h;
             //pictureBox1.Image = img.bmp;
+
+            panel1.Size = new Size(w, h);
             saveImage(img);
         }
+        Bitmap whiteImage;
         void renderImage(int w,int h)
         {
             images.Clear();
@@ -82,11 +85,30 @@ namespace Krasivator
                     img.setPixel(j, i, 255, 255, 255);
                 }
             }
+            panel1.Size = new Size(w, h);
             saveImage(img);
 
         }
+        void setConfirmVisible()
+        {
+            setInactiveRight();
+
+            setInactiveLeft();
+            panelRightConfirm.Visible = true;
+
+            boxOverlay.SelectedIndex = 0;
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Visible = true;
+            this.BackColor = Color.FromArgb(255, 44, 52, 63);
+            panelLeft.BackColor = Color.FromArgb(255, 52, 63, 73);
+            panelRight.BackColor = Color.FromArgb(255, 52, 63, 73);
+            FileToolStripMenuItem.Enabled = false;
+            EditToolStripMenuItem.Enabled = false;
+        }
         void renderSecondImage(string dir)
         {
+            setConfirmVisible();
+            panel2.Visible = true;
             boxOverlay.SelectedIndex = 0;
             secondImage = new MyImage(dir);
             pictureBox2.Location = new Point(0, 0);
@@ -144,8 +166,13 @@ namespace Krasivator
             boxOverlay.Items.Add("Умножение");
             boxOverlay.Items.Add("Темнее");
             //
+            panel2.Visible = false;
             btnLeftInst.Enabled = false;
             panelRightInst.Visible = true;
+            //
+            ToolTip t = new ToolTip();
+            t.SetToolTip(btnRightInst1, "Перемещение");
+
         }
         void setInactiveRight()
         {
@@ -270,7 +297,7 @@ namespace Krasivator
                 isMouseDown = false;
             }
         }
-
+        string lastOperation = "";
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             isConfirm = false;
@@ -281,9 +308,19 @@ namespace Krasivator
             this.BackColor = Color.FromArgb(255, 14, 22, 33);
             panelLeft.BackColor = Color.FromArgb(255, 22, 33, 43);
             panelRight.BackColor = Color.FromArgb(255, 22, 33, 43);
+            panel2.Visible = false;
             FileToolStripMenuItem.Enabled = true;
             EditToolStripMenuItem.Enabled = true;
-            drawPictureBox();
+            switch(lastOperation)
+            {
+                case "open":
+
+                    drawPictureBox();
+                    break;
+                case "move":
+                    drawPictureBox();
+                    break;
+            }
         }
         private void wait()
         {
@@ -305,6 +342,10 @@ namespace Krasivator
             //MyImage newImage = images.Last();
             MyImage newImage = new MyImage(images.Last().bmp.Width, images.Last().bmp.Height);
             newImage.bmp = (Bitmap)images.Last().bmp.Clone();
+            if (lastOperation == "move")
+            {
+                newImage.bmp = (Bitmap)whiteImage.Clone();
+            }
             //pictureBox3.Image = images.Last().bmp;
             for (int i = 0; i < h; ++i)
             {
@@ -313,6 +354,7 @@ namespace Krasivator
                 wait((int)(c * i));
                 for (int j = 0; j < w; ++j)
                 {
+                    
                     var (r, g, b) = secondImage.getPixel(j, i);
                     int _j = j + pictureBox2.Location.X;
                     int _i = i + pictureBox2.Location.Y;
@@ -476,8 +518,35 @@ namespace Krasivator
         {
             labelOpacity.Text = barOpacity.Value.ToString() + "%";
         }
+        void setWhitePicture()
+        {
+            Bitmap b = new Bitmap(pictureBox1.Image);
+            
+            for (int i = 0; i < imageH; ++i)
+            {
+                for (int j = 0; j < imageW; ++j)
+                {
+                    b.SetPixel(j, i, Color.White);
 
-       
+                }
+            }
+            pictureBox1.Image = (Bitmap)b.Clone();
+            whiteImage = new Bitmap(b);
+
+            b.Dispose();
+        }
+        private void btnRightInst1_Click(object sender, EventArgs e)
+        {
+            lastOperation = "move";
+
+            isConfirm = true;
+            secondImage = new MyImage(imageW, imageH);
+            secondImage.bmp = (Bitmap)pictureBox1.Image.Clone();
+            pictureBox2.Image = secondImage.bmp;
+            setWhitePicture();
+            setConfirmVisible();
+        }
+
         private void btnLeftInst_Click(object sender, EventArgs e)
         {
             setInactiveRight();
@@ -496,6 +565,7 @@ namespace Krasivator
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     string dir = dialog.FileName;
+                    lastOperation = "open";
                     setInactiveRight();
                     isConfirm = true;
                     setInactiveLeft();

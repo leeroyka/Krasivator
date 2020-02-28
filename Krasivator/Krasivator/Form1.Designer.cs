@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLeftInst = new System.Windows.Forms.Button();
             this.btnLeftEff = new System.Windows.Forms.Button();
@@ -45,26 +46,26 @@
             this.btnRightInst1 = new System.Windows.Forms.Button();
             this.btnRightInst2 = new System.Windows.Forms.Button();
             this.panelRightConfirm = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.boxOverlay = new System.Windows.Forms.ComboBox();
+            this.labelOpacity = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.barOpacity = new System.Windows.Forms.TrackBar();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.debug = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.barOpacity = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelOpacity = new System.Windows.Forms.Label();
-            this.boxOverlay = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelRight.SuspendLayout();
             this.panelRightInst.SuspendLayout();
             this.panelRightConfirm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barOpacity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -136,28 +137,28 @@
             // создатьToolStripMenuItem
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.создатьToolStripMenuItem.Text = "Создать";
             this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Сохранить";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -196,9 +197,9 @@
             this.panelRight.Controls.Add(this.debug);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRight.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelRight.Location = new System.Drawing.Point(752, 24);
+            this.panelRight.Location = new System.Drawing.Point(746, 24);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(206, 591);
+            this.panelRight.Size = new System.Drawing.Size(212, 591);
             this.panelRight.TabIndex = 3;
             this.panelRight.WrapContents = false;
             // 
@@ -214,6 +215,7 @@
             // 
             // btnRightInst1
             // 
+            this.btnRightInst1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRightInst1.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnRightInst1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRightInst1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -224,9 +226,11 @@
             this.btnRightInst1.TabIndex = 1;
             this.btnRightInst1.Text = "1";
             this.btnRightInst1.UseVisualStyleBackColor = true;
+            this.btnRightInst1.Click += new System.EventHandler(this.btnRightInst1_Click);
             // 
             // btnRightInst2
             // 
+            this.btnRightInst2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRightInst2.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnRightInst2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRightInst2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -240,24 +244,102 @@
             // 
             // panelRightConfirm
             // 
+            this.panelRightConfirm.AutoSize = true;
             this.panelRightConfirm.BackColor = System.Drawing.Color.DimGray;
             this.panelRightConfirm.Controls.Add(this.panel2);
             this.panelRightConfirm.Controls.Add(this.btnConfirm);
             this.panelRightConfirm.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelRightConfirm.Location = new System.Drawing.Point(3, 109);
             this.panelRightConfirm.Name = "panelRightConfirm";
-            this.panelRightConfirm.Size = new System.Drawing.Size(200, 148);
+            this.panelRightConfirm.Size = new System.Drawing.Size(206, 143);
             this.panelRightConfirm.TabIndex = 5;
             this.panelRightConfirm.WrapContents = false;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.boxOverlay);
+            this.panel2.Controls.Add(this.labelOpacity);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.barOpacity);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 101);
+            this.panel2.TabIndex = 2;
+            // 
+            // boxOverlay
+            // 
+            this.boxOverlay.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.boxOverlay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.boxOverlay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.boxOverlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.boxOverlay.Font = new System.Drawing.Font("Candara", 9F);
+            this.boxOverlay.ForeColor = System.Drawing.Color.White;
+            this.boxOverlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.boxOverlay.Location = new System.Drawing.Point(6, 69);
+            this.boxOverlay.Name = "boxOverlay";
+            this.boxOverlay.Size = new System.Drawing.Size(156, 22);
+            this.boxOverlay.TabIndex = 2;
+            // 
+            // labelOpacity
+            // 
+            this.labelOpacity.AutoSize = true;
+            this.labelOpacity.BackColor = System.Drawing.Color.Transparent;
+            this.labelOpacity.Font = new System.Drawing.Font("Candara", 9F);
+            this.labelOpacity.ForeColor = System.Drawing.Color.White;
+            this.labelOpacity.Location = new System.Drawing.Point(161, 18);
+            this.labelOpacity.Name = "labelOpacity";
+            this.labelOpacity.Size = new System.Drawing.Size(31, 14);
+            this.labelOpacity.TabIndex = 1;
+            this.labelOpacity.Text = "100%";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Candara", 9F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 14);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Режим наложения:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Candara", 9F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 14);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Непрозрачность:";
+            // 
+            // barOpacity
+            // 
+            this.barOpacity.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.barOpacity.LargeChange = 20;
+            this.barOpacity.Location = new System.Drawing.Point(0, 18);
+            this.barOpacity.Maximum = 100;
+            this.barOpacity.Name = "barOpacity";
+            this.barOpacity.Size = new System.Drawing.Size(162, 45);
+            this.barOpacity.TabIndex = 0;
+            this.barOpacity.TickFrequency = 10;
+            this.barOpacity.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.barOpacity.Value = 100;
+            this.barOpacity.Scroll += new System.EventHandler(this.barOpacity_Scroll);
+            // 
             // btnConfirm
             // 
+            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Candara", 9F);
             this.btnConfirm.ForeColor = System.Drawing.Color.White;
-            this.btnConfirm.Location = new System.Drawing.Point(6, 110);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
+            this.btnConfirm.Location = new System.Drawing.Point(8, 110);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(188, 30);
             this.btnConfirm.TabIndex = 1;
@@ -269,7 +351,7 @@
             // 
             this.debug.AutoSize = true;
             this.debug.ForeColor = System.Drawing.Color.White;
-            this.debug.Location = new System.Drawing.Point(3, 260);
+            this.debug.Location = new System.Drawing.Point(3, 255);
             this.debug.Name = "debug";
             this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
@@ -278,6 +360,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 50);
@@ -298,82 +381,6 @@
             this.panel1.Size = new System.Drawing.Size(693, 591);
             this.panel1.TabIndex = 5;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.boxOverlay);
-            this.panel2.Controls.Add(this.labelOpacity);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.barOpacity);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 101);
-            this.panel2.TabIndex = 2;
-            // 
-            // barOpacity
-            // 
-            this.barOpacity.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.barOpacity.LargeChange = 20;
-            this.barOpacity.Location = new System.Drawing.Point(0, 18);
-            this.barOpacity.Maximum = 100;
-            this.barOpacity.Name = "barOpacity";
-            this.barOpacity.Size = new System.Drawing.Size(162, 45);
-            this.barOpacity.TabIndex = 0;
-            this.barOpacity.TickFrequency = 10;
-            this.barOpacity.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.barOpacity.Value = 100;
-            this.barOpacity.Scroll += new System.EventHandler(this.barOpacity_Scroll);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Candara", 9F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 2);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 14);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Непрозрачность:";
-            // 
-            // labelOpacity
-            // 
-            this.labelOpacity.AutoSize = true;
-            this.labelOpacity.BackColor = System.Drawing.Color.Transparent;
-            this.labelOpacity.Font = new System.Drawing.Font("Candara", 9F);
-            this.labelOpacity.ForeColor = System.Drawing.Color.White;
-            this.labelOpacity.Location = new System.Drawing.Point(161, 18);
-            this.labelOpacity.Name = "labelOpacity";
-            this.labelOpacity.Size = new System.Drawing.Size(31, 14);
-            this.labelOpacity.TabIndex = 1;
-            this.labelOpacity.Text = "100%";
-            // 
-            // boxOverlay
-            // 
-            this.boxOverlay.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.boxOverlay.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.boxOverlay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.boxOverlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.boxOverlay.Font = new System.Drawing.Font("Candara", 9F);
-            this.boxOverlay.ForeColor = System.Drawing.Color.White;
-            this.boxOverlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.boxOverlay.Location = new System.Drawing.Point(6, 69);
-            this.boxOverlay.Name = "boxOverlay";
-            this.boxOverlay.Size = new System.Drawing.Size(156, 22);
-            this.boxOverlay.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Candara", 9F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 14);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Режим наложения:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,6 +391,7 @@
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -401,12 +409,12 @@
             this.panelRight.PerformLayout();
             this.panelRightInst.ResumeLayout(false);
             this.panelRightConfirm.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barOpacity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
