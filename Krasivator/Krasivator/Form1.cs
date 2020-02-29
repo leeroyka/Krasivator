@@ -162,8 +162,11 @@ namespace Krasivator
             btnRightInst2.BackColor = Color.FromArgb(255, 42, 83, 120);
             panelRightInst.BackColor = Color.FromArgb(255, 32, 43, 54);
             panelRightConfirm.BackColor = Color.FromArgb(255, 32, 43, 54);
+            panelRightEffects.BackColor = Color.FromArgb(255, 32, 43, 54);
             btnLeftEff.ForeColor = Color.White;
             btnLeftInst.ForeColor = Color.White;
+            btnContrast.BackColor = Color.FromArgb(255, 42, 83, 120);
+            btnBright.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnLeftInst.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
             btnLeftEff.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
             boxOverlay.BackColor = Color.FromArgb(255, 32, 43, 54);
@@ -186,6 +189,7 @@ namespace Krasivator
             btnLeftInst.Enabled = false;
             panelRightInst.Visible = true;
             saveagainToolStripMenuItem.Enabled = false;
+            panelRightEffects.Visible = false;
             //
             ToolTip t = new ToolTip();
             t.SetToolTip(btnRightInst1, "Перемещение");
@@ -489,6 +493,7 @@ namespace Krasivator
             setInactiveRight();
             setActiveLeft();
             btnLeftEff.Enabled = false;
+            panelRightEffects.Visible = true;
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -673,12 +678,101 @@ namespace Krasivator
             }
         }
 
+        private void btnBright_Click(object sender, EventArgs e)
+        {
+            this.Opacity = .75;
+            FormBar frm = new FormBar("Яркость");
+            frm.ShowDialog();
+            this.Opacity = 1;
+            if(frm.DialogResult==DialogResult.OK)
+            {
+                
+                MyImage myImage = new MyImage(imageW, imageH);
+                myImage.bmp = (Bitmap)pictureBox1.Image.Clone();
+                wait();
+                for (int i = 0; i < imageH; ++i)
+                {
+                    double c = 100 / (double)imageH;
+                    frmWait.setValue((int)(c * i));
+                    wait((int)(c * i));
+                    for (int j = 0; j < imageW; ++j)
+                    {
+                        var (r, g, b) = myImage.getPixel(j, i);
+                        r = r + (int)(255.0 / 100) * frm.GetValue();
+                        g = g + (int)(255.0 / 100) * frm.GetValue();
+                        b = b + (int)(255.0 / 100) * frm.GetValue();
+                        if (r > 255) r = 255;
+                        if (r < 0) r = 0;
+                        if (g > 255) g = 255;
+                        if (g < 0) g = 0;
+                        if (b > 255) b = 255;
+                        if (b < 0) b = 0;
+
+                        myImage.setPixel(j, i, r, g, b);
+                    }
+                }
+                saveImage(myImage);
+                unWait();
+
+            }
+        }
+
+        private void btnContrast_Click(object sender, EventArgs e)
+        {
+            this.Opacity = .75;
+            FormBar frm = new FormBar("Контраст");
+            frm.ShowDialog();
+            this.Opacity = 1;
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                MyImage myImage = new MyImage(imageW, imageH);
+                myImage.bmp = (Bitmap)pictureBox1.Image.Clone();
+                wait();
+
+                int l = 0;
+                for (int i = 0; i < imageH; ++i)
+                {
+                    for (int j = 0; j < imageW; ++j)
+                    {
+                        var (r, g, b) = myImage.getPixel(j, i);
+                        l += (int)(r * 0.299 + g * 0.587 + b * 0.114);
+
+                    }
+                }
+                l /= imageH * imageW;
+                l /= 3;
+                for (int i = 0; i < imageH; ++i)
+                {
+                    double c = 100 / (double)imageH;
+                    frmWait.setValue((int)(c * i));
+                    wait((int)(c * i));
+                    for (int j = 0; j < imageW; ++j)
+                    {
+                        var (r, g, b) = myImage.getPixel(j, i);
+                        r = frm.GetValue() * (r - l) + l;
+                        g = frm.GetValue() * (g - l) + l;
+                        b = frm.GetValue() * (b - l) + l;
+                        if (r > 255) r = 255;
+                        if (r < 0) r = 0;
+                        if (g > 255) g = 255;
+                        if (g < 0) g = 0;
+                        if (b > 255) b = 255;
+                        if (b < 0) b = 0;
+
+                        myImage.setPixel(j, i, r, g, b);
+                    }
+                }
+                saveImage(myImage);
+                unWait();
+            }
+        }
+
         private void btnLeftInst_Click(object sender, EventArgs e)
         {
             setInactiveRight();
             panelRightInst.Visible = true;
             setActiveLeft();
-
+            panelRightEffects.Visible = false;
             btnLeftInst.Enabled = false;
             //btnLeftInst.Enabled = true;
         }

@@ -64,6 +64,9 @@
             this.btnColor = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.saveagainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelRightEffects = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnBright = new System.Windows.Forms.Button();
+            this.btnContrast = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,6 +79,7 @@
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxBrushSize)).BeginInit();
+            this.panelRightEffects.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -205,6 +209,7 @@
             this.panelRight.AutoSize = true;
             this.panelRight.Controls.Add(this.panelRightInst);
             this.panelRight.Controls.Add(this.panelRightConfirm);
+            this.panelRight.Controls.Add(this.panelRightEffects);
             this.panelRight.Controls.Add(this.debug);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRight.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -221,7 +226,7 @@
             this.panelRightInst.Controls.Add(this.btnRightInst2);
             this.panelRightInst.Location = new System.Drawing.Point(3, 3);
             this.panelRightInst.Name = "panelRightInst";
-            this.panelRightInst.Size = new System.Drawing.Size(200, 100);
+            this.panelRightInst.Size = new System.Drawing.Size(206, 100);
             this.panelRightInst.TabIndex = 4;
             // 
             // btnRightInst1
@@ -363,8 +368,8 @@
             // debug
             // 
             this.debug.AutoSize = true;
-            this.debug.ForeColor = System.Drawing.Color.White;
-            this.debug.Location = new System.Drawing.Point(3, 308);
+            this.debug.ForeColor = System.Drawing.Color.Black;
+            this.debug.Location = new System.Drawing.Point(3, 388);
             this.debug.Name = "debug";
             this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
@@ -484,6 +489,48 @@
             this.saveagainToolStripMenuItem.Text = "Сохранить";
             this.saveagainToolStripMenuItem.Click += new System.EventHandler(this.saveagainToolStripMenuItem_Click);
             // 
+            // panelRightEffects
+            // 
+            this.panelRightEffects.BackColor = System.Drawing.Color.DimGray;
+            this.panelRightEffects.Controls.Add(this.btnBright);
+            this.panelRightEffects.Controls.Add(this.btnContrast);
+            this.panelRightEffects.Location = new System.Drawing.Point(3, 311);
+            this.panelRightEffects.Name = "panelRightEffects";
+            this.panelRightEffects.Size = new System.Drawing.Size(206, 74);
+            this.panelRightEffects.TabIndex = 4;
+            // 
+            // btnBright
+            // 
+            this.btnBright.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBright.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnBright.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBright.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnBright.ForeColor = System.Drawing.Color.White;
+            this.btnBright.Location = new System.Drawing.Point(8, 3);
+            this.btnBright.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnBright.Name = "btnBright";
+            this.btnBright.Size = new System.Drawing.Size(188, 30);
+            this.btnBright.TabIndex = 1;
+            this.btnBright.Text = "Яркость";
+            this.btnBright.UseVisualStyleBackColor = true;
+            this.btnBright.Click += new System.EventHandler(this.btnBright_Click);
+            // 
+            // btnContrast
+            // 
+            this.btnContrast.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnContrast.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnContrast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContrast.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnContrast.ForeColor = System.Drawing.Color.White;
+            this.btnContrast.Location = new System.Drawing.Point(8, 39);
+            this.btnContrast.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnContrast.Name = "btnContrast";
+            this.btnContrast.Size = new System.Drawing.Size(188, 30);
+            this.btnContrast.TabIndex = 1;
+            this.btnContrast.Text = "Контраст";
+            this.btnContrast.UseVisualStyleBackColor = true;
+            this.btnContrast.Click += new System.EventHandler(this.btnContrast_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -521,6 +568,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxBrushSize)).EndInit();
+            this.panelRightEffects.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -563,6 +611,9 @@
         private System.Windows.Forms.Button btnColor;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStripMenuItem saveagainToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel panelRightEffects;
+        private System.Windows.Forms.Button btnBright;
+        private System.Windows.Forms.Button btnContrast;
     }
 }
 
