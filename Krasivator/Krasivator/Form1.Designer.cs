@@ -67,6 +67,7 @@
             this.panelRightEffects = new System.Windows.Forms.FlowLayoutPanel();
             this.btnBright = new System.Windows.Forms.Button();
             this.btnContrast = new System.Windows.Forms.Button();
+            this.btnNoise = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -369,7 +370,7 @@
             // 
             this.debug.AutoSize = true;
             this.debug.ForeColor = System.Drawing.Color.Black;
-            this.debug.Location = new System.Drawing.Point(3, 388);
+            this.debug.Location = new System.Drawing.Point(3, 424);
             this.debug.Name = "debug";
             this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
@@ -494,9 +495,10 @@
             this.panelRightEffects.BackColor = System.Drawing.Color.DimGray;
             this.panelRightEffects.Controls.Add(this.btnBright);
             this.panelRightEffects.Controls.Add(this.btnContrast);
+            this.panelRightEffects.Controls.Add(this.btnNoise);
             this.panelRightEffects.Location = new System.Drawing.Point(3, 311);
             this.panelRightEffects.Name = "panelRightEffects";
-            this.panelRightEffects.Size = new System.Drawing.Size(206, 74);
+            this.panelRightEffects.Size = new System.Drawing.Size(206, 110);
             this.panelRightEffects.TabIndex = 4;
             // 
             // btnBright
@@ -530,6 +532,22 @@
             this.btnContrast.Text = "Контраст";
             this.btnContrast.UseVisualStyleBackColor = true;
             this.btnContrast.Click += new System.EventHandler(this.btnContrast_Click);
+            // 
+            // btnNoise
+            // 
+            this.btnNoise.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNoise.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnNoise.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNoise.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnNoise.ForeColor = System.Drawing.Color.White;
+            this.btnNoise.Location = new System.Drawing.Point(8, 75);
+            this.btnNoise.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnNoise.Name = "btnNoise";
+            this.btnNoise.Size = new System.Drawing.Size(188, 30);
+            this.btnNoise.TabIndex = 1;
+            this.btnNoise.Text = "Создать шум";
+            this.btnNoise.UseVisualStyleBackColor = true;
+            this.btnNoise.Click += new System.EventHandler(this.btnNoise_Click);
             // 
             // Form1
             // 
@@ -614,6 +632,7 @@
         private System.Windows.Forms.FlowLayoutPanel panelRightEffects;
         private System.Windows.Forms.Button btnBright;
         private System.Windows.Forms.Button btnContrast;
+        private System.Windows.Forms.Button btnNoise;
     }
 }
 

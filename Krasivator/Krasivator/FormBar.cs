@@ -24,6 +24,10 @@ namespace Krasivator
             trackBar1.BackColor = Color.FromArgb(255, 23, 33, 43);
             labelValue.Text = trackBar1.Value.ToString();
             button1.BackColor = Color.FromArgb(255, 39, 105, 153);
+            if(n=="Количество шумов")
+            {
+                trackBar1.Minimum = 0;
+            }
         }
 
         private void xToolStripMenuItem_Click(object sender, EventArgs e)

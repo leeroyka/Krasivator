@@ -167,6 +167,7 @@ namespace Krasivator
             btnLeftInst.ForeColor = Color.White;
             btnContrast.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnBright.BackColor = Color.FromArgb(255, 42, 83, 120);
+            btnNoise.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnLeftInst.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
             btnLeftEff.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
             boxOverlay.BackColor = Color.FromArgb(255, 32, 43, 54);
@@ -344,7 +345,7 @@ namespace Krasivator
             panelRight.BackColor = Color.FromArgb(255, 22, 33, 43);
             panel2.Visible = false;
             panel3.Visible = false;
-
+            barOpacity.Value = 100;
             FileToolStripMenuItem.Enabled = true;
             EditToolStripMenuItem.Enabled = true;
             switch(lastOperation)
@@ -767,6 +768,51 @@ namespace Krasivator
             }
         }
 
+        private void btnNoise_Click(object sender, EventArgs e)
+        {
+            this.Opacity = .75;
+            FormBar frm = new FormBar("Количество шумов");
+            frm.ShowDialog();
+            this.Opacity = 1;
+            Random rnd = new Random();
+            if (frm.DialogResult == DialogResult.OK)
+            {
+
+                MyImage myImage = new MyImage(imageW, imageH);
+                myImage.bmp = (Bitmap)pictureBox1.Image.Clone();
+                wait();
+                for (int i = 0; i < imageH; ++i)
+                {
+                    double c = 100 / (double)imageH;
+                    frmWait.setValue((int)(c * i));
+                    wait((int)(c * i));
+                    for (int j = 0; j < imageW; ++j)
+                    {
+                        var (r, g, b) = myImage.getPixel(j, i);
+                        
+                        int q = rnd.Next(100);
+                        if (q <= frm.GetValue())
+                        {
+                            r *= rnd.Next(7) % 255;
+                            g *= rnd.Next(7) % 255;
+                            b *= rnd.Next(7) % 255;
+                        }
+                        if (r > 255) r = 255;
+                        if (r < 0) r = 0;
+                        if (g > 255) g = 255;
+                        if (g < 0) g = 0;
+                        if (b > 255) b = 255;
+                        if (b < 0) b = 0;
+
+                        myImage.setPixel(j, i, r, g, b);
+                    }
+                }
+                saveImage(myImage);
+                unWait();
+
+            }
+        }
+
         private void btnLeftInst_Click(object sender, EventArgs e)
         {
             setInactiveRight();
@@ -789,6 +835,7 @@ namespace Krasivator
                     setInactiveRight();
                     isConfirm = true;
                     setInactiveLeft();
+                    panelRightEffects.Visible = false;
                     panelRightConfirm.Visible = true;
                     renderSecondImage(dir);
                 }
