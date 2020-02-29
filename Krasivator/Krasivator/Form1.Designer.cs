@@ -56,6 +56,14 @@
             this.debug = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.boxBrushSize = new System.Windows.Forms.NumericUpDown();
+            this.btnColor = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.saveagainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -66,6 +74,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.barOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.boxBrushSize)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -128,6 +138,7 @@
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создатьToolStripMenuItem,
             this.открытьToolStripMenuItem,
+            this.saveagainToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.выйтиToolStripMenuItem});
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
@@ -152,7 +163,7 @@
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveToolStripMenuItem.Text = "Сохранить";
+            this.saveToolStripMenuItem.Text = "Сохранить как";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // выйтиToolStripMenuItem
@@ -241,17 +252,19 @@
             this.btnRightInst2.TabIndex = 2;
             this.btnRightInst2.Text = "2";
             this.btnRightInst2.UseVisualStyleBackColor = true;
+            this.btnRightInst2.Click += new System.EventHandler(this.btnRightInst2_Click);
             // 
             // panelRightConfirm
             // 
             this.panelRightConfirm.AutoSize = true;
             this.panelRightConfirm.BackColor = System.Drawing.Color.DimGray;
             this.panelRightConfirm.Controls.Add(this.panel2);
+            this.panelRightConfirm.Controls.Add(this.panel3);
             this.panelRightConfirm.Controls.Add(this.btnConfirm);
             this.panelRightConfirm.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelRightConfirm.Location = new System.Drawing.Point(3, 109);
             this.panelRightConfirm.Name = "panelRightConfirm";
-            this.panelRightConfirm.Size = new System.Drawing.Size(206, 143);
+            this.panelRightConfirm.Size = new System.Drawing.Size(206, 196);
             this.panelRightConfirm.TabIndex = 5;
             this.panelRightConfirm.WrapContents = false;
             // 
@@ -338,7 +351,7 @@
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Candara", 9F);
             this.btnConfirm.ForeColor = System.Drawing.Color.White;
-            this.btnConfirm.Location = new System.Drawing.Point(8, 110);
+            this.btnConfirm.Location = new System.Drawing.Point(8, 163);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(188, 30);
@@ -351,7 +364,7 @@
             // 
             this.debug.AutoSize = true;
             this.debug.ForeColor = System.Drawing.Color.White;
-            this.debug.Location = new System.Drawing.Point(3, 255);
+            this.debug.Location = new System.Drawing.Point(3, 308);
             this.debug.Name = "debug";
             this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
@@ -368,6 +381,7 @@
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Visible = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseDown);
             this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseMove);
             this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseUp);
@@ -380,6 +394,95 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(693, 591);
             this.panel1.TabIndex = 5;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnColor);
+            this.panel3.Controls.Add(this.boxBrushSize);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Location = new System.Drawing.Point(3, 110);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 47);
+            this.panel3.TabIndex = 3;
+            this.panel3.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Candara", 9F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(80, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(20, 14);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "px";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Candara", 9F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(118, 2);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 14);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Цвет:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Candara", 9F);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(3, 2);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 14);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Размер кисти";
+            // 
+            // boxBrushSize
+            // 
+            this.boxBrushSize.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.boxBrushSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxBrushSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.boxBrushSize.ForeColor = System.Drawing.SystemColors.Menu;
+            this.boxBrushSize.Location = new System.Drawing.Point(6, 20);
+            this.boxBrushSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.boxBrushSize.Name = "boxBrushSize";
+            this.boxBrushSize.Size = new System.Drawing.Size(74, 20);
+            this.boxBrushSize.TabIndex = 3;
+            this.boxBrushSize.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // btnColor
+            // 
+            this.btnColor.BackColor = System.Drawing.Color.White;
+            this.btnColor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnColor.Location = new System.Drawing.Point(121, 21);
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Size = new System.Drawing.Size(20, 20);
+            this.btnColor.TabIndex = 4;
+            this.btnColor.UseVisualStyleBackColor = false;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+            // 
+            // saveagainToolStripMenuItem
+            // 
+            this.saveagainToolStripMenuItem.Name = "saveagainToolStripMenuItem";
+            this.saveagainToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveagainToolStripMenuItem.Text = "Сохранить";
+            this.saveagainToolStripMenuItem.Click += new System.EventHandler(this.saveagainToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -415,6 +518,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.boxBrushSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,6 +555,14 @@
         private System.Windows.Forms.Label labelOpacity;
         private System.Windows.Forms.ComboBox boxOverlay;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown boxBrushSize;
+        private System.Windows.Forms.Button btnColor;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ToolStripMenuItem saveagainToolStripMenuItem;
     }
 }
 

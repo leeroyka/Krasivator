@@ -89,6 +89,7 @@ namespace Krasivator
             saveImage(img);
 
         }
+        Color color;
         void setConfirmVisible()
         {
             setInactiveRight();
@@ -104,6 +105,17 @@ namespace Krasivator
             panelRight.BackColor = Color.FromArgb(255, 52, 63, 73);
             FileToolStripMenuItem.Enabled = false;
             EditToolStripMenuItem.Enabled = false;
+            pictureBox2.Cursor = Cursors.SizeAll;
+            if (lastOperation=="draw")
+            {
+                pictureBox2.Cursor = Cursors.Default;
+                panel3.Visible = true;
+                colorDialog1.AnyColor = true;
+                colorDialog1.FullOpen = true;
+                colorDialog1.Color = color;
+                btnColor.BackColor = color;
+
+            }
         }
         void renderSecondImage(string dir)
         {
@@ -132,11 +144,13 @@ namespace Krasivator
             создатьToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
             открытьToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
             saveToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
+            saveagainToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
             выйтиToolStripMenuItem.BackColor = Color.FromArgb(255, 36, 47, 61);
             создатьToolStripMenuItem.ForeColor = Color.White;
             открытьToolStripMenuItem.ForeColor = Color.White;
             saveToolStripMenuItem.ForeColor = Color.White;
             выйтиToolStripMenuItem.ForeColor = Color.White;
+            saveagainToolStripMenuItem.ForeColor = Color.White;
             xToolStripMenuItem.ForeColor = colorText;
             this.BackColor = Color.FromArgb(255, 14, 22, 33);
             panelLeft.BackColor = Color.FromArgb(255, 22, 33, 43);
@@ -153,7 +167,9 @@ namespace Krasivator
             btnLeftInst.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
             btnLeftEff.FlatAppearance.BorderColor = Color.FromArgb(255, 108, 120, 131);
             boxOverlay.BackColor = Color.FromArgb(255, 32, 43, 54);
-
+            boxBrushSize.BackColor = Color.FromArgb(255, 32, 43, 54);
+            //
+            color = Color.Black;
             //
             boxOverlay.Items.Add("Нормальный");
             
@@ -169,9 +185,11 @@ namespace Krasivator
             panel2.Visible = false;
             btnLeftInst.Enabled = false;
             panelRightInst.Visible = true;
+            saveagainToolStripMenuItem.Enabled = false;
             //
             ToolTip t = new ToolTip();
             t.SetToolTip(btnRightInst1, "Перемещение");
+            t.SetToolTip(btnRightInst2, "Кисть");
 
         }
         void setInactiveRight()
@@ -266,11 +284,13 @@ namespace Krasivator
             this.Close();
         }
         bool isConfirm = false;
+        bool isDown = false;
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
             int xOffset;
             int yOffset;
-
+            if (isPainting)
+                isDown = true;
             if (e.Button == MouseButtons.Left && isConfirm)
             {
                 xOffset = -e.X - SystemInformation.FrameBorderSize.Width;
@@ -282,6 +302,14 @@ namespace Krasivator
 
         private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
         {
+            if (isPainting && isDown)
+            {
+                SolidBrush brush = new SolidBrush(color);
+                Point mousePos = Control.MousePosition;
+                mousePos.Offset(0 - this.Location.X - panel1.Location.X - (int)(boxBrushSize.Value/2), 0 - this.Location.Y - panel1.Location.Y- (int)(boxBrushSize.Value / 2));
+                g.FillEllipse(brush, mousePos.X, mousePos.Y, (float)boxBrushSize.Value, (float)boxBrushSize.Value);
+                pictureBox2.Refresh();
+            }
             if (isMouseDown)
             {
                 Point mousePos = Control.MousePosition;
@@ -292,6 +320,7 @@ namespace Krasivator
 
         private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
         {
+            isDown = false;
             if (e.Button == MouseButtons.Left)
             {
                 isMouseDown = false;
@@ -301,6 +330,7 @@ namespace Krasivator
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             isConfirm = false;
+            isPainting = false;
             setInactiveRight();
             setActiveLeft();
             btnLeftInst.Enabled = false;
@@ -309,6 +339,8 @@ namespace Krasivator
             panelLeft.BackColor = Color.FromArgb(255, 22, 33, 43);
             panelRight.BackColor = Color.FromArgb(255, 22, 33, 43);
             panel2.Visible = false;
+            panel3.Visible = false;
+
             FileToolStripMenuItem.Enabled = true;
             EditToolStripMenuItem.Enabled = true;
             switch(lastOperation)
@@ -320,6 +352,10 @@ namespace Krasivator
                 case "move":
                     drawPictureBox();
                     break;
+                case "draw":
+                    drawPictureBox();
+                    break;
+
             }
         }
         private void wait()
@@ -459,15 +495,39 @@ namespace Krasivator
         {
            
         }
-
+        string saveDir = "";
+        int dirIndex;
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if ($"{ e.KeyCode}" == "Z" && $"{e.Modifiers}" == "Control")
             {
                 controlZ();
-                debug.Text = "LOL";
             }
-            
+            if ($"{ e.KeyCode}" == "S" && $"{e.Modifiers}" == "Control")
+            {
+                if(saveDir!="")
+                {
+                    switch (dirIndex)
+                    {
+                        case 1:
+                            images.Last().bmp.Save(saveDir,
+                              System.Drawing.Imaging.ImageFormat.Jpeg);
+                            break;
+
+                        case 2:
+                            images.Last().bmp.Save(saveDir,
+                              System.Drawing.Imaging.ImageFormat.Bmp);
+                            break;
+
+                        case 3:
+                            images.Last().bmp.Save(saveDir,
+                              System.Drawing.Imaging.ImageFormat.Gif);
+                            break;
+                    }
+                }
+            }
+
+
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -485,16 +545,19 @@ namespace Krasivator
             // If the file name is not an empty string open it for saving.
             if (saveFileDialog1.FileName != "")
             {
+                saveagainToolStripMenuItem.Enabled = true;
                 // Saves the Image via a FileStream created by the OpenFile method.
                 System.IO.FileStream fs =
                     (System.IO.FileStream)saveFileDialog1.OpenFile();
+                saveDir = saveFileDialog1.FileName;
+
+                dirIndex = saveFileDialog1.FilterIndex;
                 // Saves the Image in the appropriate ImageFormat based upon the
                 // File type selected in the dialog box.
                 // NOTE that the FilterIndex property is one-based.
                 switch (saveFileDialog1.FilterIndex)
                 {
                     case 1:
-
                         images.Last().bmp.Save(fs,
                           System.Drawing.Imaging.ImageFormat.Jpeg);
                         break;
@@ -545,6 +608,69 @@ namespace Krasivator
             pictureBox2.Image = secondImage.bmp;
             setWhitePicture();
             setConfirmVisible();
+        }
+        bool isPainting = false;
+        Graphics g;
+        private void btnRightInst2_Click(object sender, EventArgs e)
+        {
+            lastOperation = "draw";
+            secondImage = new MyImage(imageW, imageH);
+            secondImage.bmp = (Bitmap)pictureBox1.Image.Clone();
+            pictureBox2.Image = secondImage.bmp;
+            pictureBox2.Location = new Point(0, 0);
+            isPainting = true;
+            g = Graphics.FromImage(pictureBox2.Image);
+
+            setConfirmVisible();
+        }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            color = colorDialog1.Color;
+            btnColor.BackColor = color;            
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            //Pen p = new Pen(color,)
+            if (isPainting)
+            {
+
+               
+                
+                    SolidBrush brush = new SolidBrush(color);
+                    Point mousePos = Control.MousePosition;
+                    mousePos.Offset( 0- this.Location.X - panel1.Location.X- (int)(boxBrushSize.Value / 2), 0- this.Location.Y - panel1.Location.Y- (int)(boxBrushSize.Value / 2));
+                    g.FillEllipse(brush, mousePos.X, mousePos.Y, (float)boxBrushSize.Value, (float)boxBrushSize.Value);
+                pictureBox2.Refresh();
+                
+            }
+        }
+
+        private void saveagainToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveDir != "")
+            {
+                switch (dirIndex)
+                {
+                    case 1:
+                        images.Last().bmp.Save(saveDir,
+                          System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+
+                    case 2:
+                        images.Last().bmp.Save(saveDir,
+                          System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+
+                    case 3:
+                        images.Last().bmp.Save(saveDir,
+                          System.Drawing.Imaging.ImageFormat.Gif);
+                        break;
+                }
+            }
         }
 
         private void btnLeftInst_Click(object sender, EventArgs e)
