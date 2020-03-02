@@ -36,6 +36,7 @@
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveagainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,22 +53,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.barOpacity = new System.Windows.Forms.TrackBar();
-            this.btnConfirm = new System.Windows.Forms.Button();
-            this.debug = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnColor = new System.Windows.Forms.Button();
+            this.boxBrushSize = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.boxBrushSize = new System.Windows.Forms.NumericUpDown();
-            this.btnColor = new System.Windows.Forms.Button();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.saveagainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnConfirm = new System.Windows.Forms.Button();
             this.panelRightEffects = new System.Windows.Forms.FlowLayoutPanel();
             this.btnBright = new System.Windows.Forms.Button();
             this.btnContrast = new System.Windows.Forms.Button();
             this.btnNoise = new System.Windows.Forms.Button();
+            this.debug = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btnCurves = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,11 +77,11 @@
             this.panelRightConfirm.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barOpacity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxBrushSize)).BeginInit();
             this.panelRightEffects.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -153,28 +154,35 @@
             // создатьToolStripMenuItem
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.создатьToolStripMenuItem.Text = "Создать";
             this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
+            // 
+            // saveagainToolStripMenuItem
+            // 
+            this.saveagainToolStripMenuItem.Name = "saveagainToolStripMenuItem";
+            this.saveagainToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.saveagainToolStripMenuItem.Text = "Сохранить";
+            this.saveagainToolStripMenuItem.Click += new System.EventHandler(this.saveagainToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveToolStripMenuItem.Text = "Сохранить как";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -350,57 +358,6 @@
             this.barOpacity.Value = 100;
             this.barOpacity.Scroll += new System.EventHandler(this.barOpacity_Scroll);
             // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirm.Font = new System.Drawing.Font("Candara", 9F);
-            this.btnConfirm.ForeColor = System.Drawing.Color.White;
-            this.btnConfirm.Location = new System.Drawing.Point(8, 163);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(188, 30);
-            this.btnConfirm.TabIndex = 1;
-            this.btnConfirm.Text = "Подтвердить";
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // debug
-            // 
-            this.debug.AutoSize = true;
-            this.debug.ForeColor = System.Drawing.Color.Black;
-            this.debug.Location = new System.Drawing.Point(3, 424);
-            this.debug.Name = "debug";
-            this.debug.Size = new System.Drawing.Size(39, 13);
-            this.debug.TabIndex = 6;
-            this.debug.Text = "Debug";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseDown);
-            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseMove);
-            this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseUp);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(56, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(693, 591);
-            this.panel1.TabIndex = 5;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.btnColor);
@@ -413,6 +370,39 @@
             this.panel3.Size = new System.Drawing.Size(200, 47);
             this.panel3.TabIndex = 3;
             this.panel3.Visible = false;
+            // 
+            // btnColor
+            // 
+            this.btnColor.BackColor = System.Drawing.Color.White;
+            this.btnColor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnColor.Location = new System.Drawing.Point(121, 21);
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Size = new System.Drawing.Size(20, 20);
+            this.btnColor.TabIndex = 4;
+            this.btnColor.UseVisualStyleBackColor = false;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+            // 
+            // boxBrushSize
+            // 
+            this.boxBrushSize.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.boxBrushSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.boxBrushSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.boxBrushSize.ForeColor = System.Drawing.SystemColors.Menu;
+            this.boxBrushSize.Location = new System.Drawing.Point(6, 20);
+            this.boxBrushSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.boxBrushSize.Name = "boxBrushSize";
+            this.boxBrushSize.Size = new System.Drawing.Size(74, 20);
+            this.boxBrushSize.TabIndex = 3;
+            this.boxBrushSize.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             // 
             // label3
             // 
@@ -450,45 +440,21 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Размер кисти";
             // 
-            // boxBrushSize
+            // btnConfirm
             // 
-            this.boxBrushSize.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.boxBrushSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.boxBrushSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.boxBrushSize.ForeColor = System.Drawing.SystemColors.Menu;
-            this.boxBrushSize.Location = new System.Drawing.Point(6, 20);
-            this.boxBrushSize.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.boxBrushSize.Name = "boxBrushSize";
-            this.boxBrushSize.Size = new System.Drawing.Size(74, 20);
-            this.boxBrushSize.TabIndex = 3;
-            this.boxBrushSize.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            // 
-            // btnColor
-            // 
-            this.btnColor.BackColor = System.Drawing.Color.White;
-            this.btnColor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnColor.Location = new System.Drawing.Point(121, 21);
-            this.btnColor.Name = "btnColor";
-            this.btnColor.Size = new System.Drawing.Size(20, 20);
-            this.btnColor.TabIndex = 4;
-            this.btnColor.UseVisualStyleBackColor = false;
-            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
-            // 
-            // saveagainToolStripMenuItem
-            // 
-            this.saveagainToolStripMenuItem.Name = "saveagainToolStripMenuItem";
-            this.saveagainToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveagainToolStripMenuItem.Text = "Сохранить";
-            this.saveagainToolStripMenuItem.Click += new System.EventHandler(this.saveagainToolStripMenuItem_Click);
+            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirm.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnConfirm.ForeColor = System.Drawing.Color.White;
+            this.btnConfirm.Location = new System.Drawing.Point(8, 163);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(188, 30);
+            this.btnConfirm.TabIndex = 1;
+            this.btnConfirm.Text = "Подтвердить";
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // panelRightEffects
             // 
@@ -496,9 +462,10 @@
             this.panelRightEffects.Controls.Add(this.btnBright);
             this.panelRightEffects.Controls.Add(this.btnContrast);
             this.panelRightEffects.Controls.Add(this.btnNoise);
+            this.panelRightEffects.Controls.Add(this.btnCurves);
             this.panelRightEffects.Location = new System.Drawing.Point(3, 311);
             this.panelRightEffects.Name = "panelRightEffects";
-            this.panelRightEffects.Size = new System.Drawing.Size(206, 110);
+            this.panelRightEffects.Size = new System.Drawing.Size(206, 148);
             this.panelRightEffects.TabIndex = 4;
             // 
             // btnBright
@@ -549,6 +516,57 @@
             this.btnNoise.UseVisualStyleBackColor = true;
             this.btnNoise.Click += new System.EventHandler(this.btnNoise_Click);
             // 
+            // debug
+            // 
+            this.debug.AutoSize = true;
+            this.debug.ForeColor = System.Drawing.Color.Black;
+            this.debug.Location = new System.Drawing.Point(3, 462);
+            this.debug.Name = "debug";
+            this.debug.Size = new System.Drawing.Size(39, 13);
+            this.debug.TabIndex = 6;
+            this.debug.Text = "Debug";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseDown);
+            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseMove);
+            this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseUp);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(56, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(693, 591);
+            this.panel1.TabIndex = 5;
+            // 
+            // btnCurves
+            // 
+            this.btnCurves.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCurves.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnCurves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCurves.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnCurves.ForeColor = System.Drawing.Color.White;
+            this.btnCurves.Location = new System.Drawing.Point(8, 111);
+            this.btnCurves.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnCurves.Name = "btnCurves";
+            this.btnCurves.Size = new System.Drawing.Size(188, 30);
+            this.btnCurves.TabIndex = 1;
+            this.btnCurves.Text = "Кривые";
+            this.btnCurves.UseVisualStyleBackColor = true;
+            this.btnCurves.Click += new System.EventHandler(this.btnCurves_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -580,13 +598,13 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barOpacity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boxBrushSize)).EndInit();
             this.panelRightEffects.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -633,6 +651,7 @@
         private System.Windows.Forms.Button btnBright;
         private System.Windows.Forms.Button btnContrast;
         private System.Windows.Forms.Button btnNoise;
+        private System.Windows.Forms.Button btnCurves;
     }
 }
 

@@ -158,6 +158,7 @@ namespace Krasivator
             btnLeftInst.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnLeftEff.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnConfirm.BackColor = Color.FromArgb(255, 42, 83, 120);
+            btnCurves.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst1.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst2.BackColor = Color.FromArgb(255, 42, 83, 120);
             panelRightInst.BackColor = Color.FromArgb(255, 32, 43, 54);
@@ -810,6 +811,20 @@ namespace Krasivator
                 saveImage(myImage);
                 unWait();
 
+            }
+        }
+
+        private void btnCurves_Click(object sender, EventArgs e)
+        {
+            this.Opacity = .75;
+            MyImage newImage = new MyImage(imageW,imageH);
+            newImage.bmp = (Bitmap)images.Last().bmp.Clone();
+            FormCurves frm = new FormCurves(newImage);
+            frm.ShowDialog();
+            this.Opacity = 1;
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                saveImage(frm.getImage());
             }
         }
 

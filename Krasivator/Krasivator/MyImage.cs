@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Krasivator
 {
     
-    class MyImage
+    public class MyImage
     {
 
         public System.Drawing.Bitmap bmp;

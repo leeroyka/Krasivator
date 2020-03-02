@@ -67,6 +67,12 @@
     <Compile Include="formCreate.Designer.cs">
       <DependentUpon>formCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCurves.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCurves.Designer.cs">
+      <DependentUpon>FormCurves.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWait.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,7 @@
     <Compile Include="MyImage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplineInterpolator.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formCreate.resx">
       <DependentUpon>formCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCurves.resx">
+      <DependentUpon>FormCurves.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWait.resx">
       <DependentUpon>FormWait.cs</DependentUpon>
