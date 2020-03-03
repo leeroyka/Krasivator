@@ -69,6 +69,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnCurves = new System.Windows.Forms.Button();
+            this.btnRightInst3 = new System.Windows.Forms.Button();
+            this.btnCurve1 = new System.Windows.Forms.PictureBox();
+            this.btnCurve2 = new System.Windows.Forms.PictureBox();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -82,6 +85,8 @@
             this.panelRightEffects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCurve1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCurve2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -233,6 +238,7 @@
             this.panelRightInst.BackColor = System.Drawing.Color.DimGray;
             this.panelRightInst.Controls.Add(this.btnRightInst1);
             this.panelRightInst.Controls.Add(this.btnRightInst2);
+            this.panelRightInst.Controls.Add(this.btnRightInst3);
             this.panelRightInst.Location = new System.Drawing.Point(3, 3);
             this.panelRightInst.Name = "panelRightInst";
             this.panelRightInst.Size = new System.Drawing.Size(206, 100);
@@ -544,6 +550,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnCurve2);
+            this.panel1.Controls.Add(this.btnCurve1);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(56, 24);
@@ -566,6 +574,44 @@
             this.btnCurves.Text = "Кривые";
             this.btnCurves.UseVisualStyleBackColor = true;
             this.btnCurves.Click += new System.EventHandler(this.btnCurves_Click);
+            // 
+            // btnRightInst3
+            // 
+            this.btnRightInst3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRightInst3.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnRightInst3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRightInst3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnRightInst3.ForeColor = System.Drawing.Color.White;
+            this.btnRightInst3.Location = new System.Drawing.Point(75, 3);
+            this.btnRightInst3.Name = "btnRightInst3";
+            this.btnRightInst3.Size = new System.Drawing.Size(30, 30);
+            this.btnRightInst3.TabIndex = 2;
+            this.btnRightInst3.Text = "3";
+            this.btnRightInst3.UseVisualStyleBackColor = true;
+            this.btnRightInst3.Click += new System.EventHandler(this.btnRightInst3_Click);
+            // 
+            // btnCurve1
+            // 
+            this.btnCurve1.BackColor = System.Drawing.Color.White;
+            this.btnCurve1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnCurve1.Location = new System.Drawing.Point(54, 12);
+            this.btnCurve1.Name = "btnCurve1";
+            this.btnCurve1.Size = new System.Drawing.Size(10, 10);
+            this.btnCurve1.TabIndex = 6;
+            this.btnCurve1.TabStop = false;
+            this.btnCurve1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseDown);
+            this.btnCurve1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseMove);
+            this.btnCurve1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseUp);
+            // 
+            // btnCurve2
+            // 
+            this.btnCurve2.BackColor = System.Drawing.Color.White;
+            this.btnCurve2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnCurve2.Location = new System.Drawing.Point(70, 12);
+            this.btnCurve2.Name = "btnCurve2";
+            this.btnCurve2.Size = new System.Drawing.Size(10, 10);
+            this.btnCurve2.TabIndex = 6;
+            this.btnCurve2.TabStop = false;
             // 
             // Form1
             // 
@@ -605,6 +651,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCurve1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCurve2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -652,6 +700,9 @@
         private System.Windows.Forms.Button btnContrast;
         private System.Windows.Forms.Button btnNoise;
         private System.Windows.Forms.Button btnCurves;
+        private System.Windows.Forms.Button btnRightInst3;
+        private System.Windows.Forms.PictureBox btnCurve1;
+        private System.Windows.Forms.PictureBox btnCurve2;
     }
 }
 

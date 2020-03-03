@@ -116,6 +116,17 @@ namespace Krasivator
                 btnColor.BackColor = color;
 
             }
+            if (lastOperation == "curves")
+            {
+                pictureBox2.Cursor = Cursors.Default;
+                panel3.Visible = true;
+                colorDialog1.AnyColor = true;
+                colorDialog1.FullOpen = true;
+                colorDialog1.Color = color;
+                btnColor.BackColor = color;
+
+            }
+
         }
         void renderSecondImage(string dir)
         {
@@ -161,6 +172,7 @@ namespace Krasivator
             btnCurves.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst1.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst2.BackColor = Color.FromArgb(255, 42, 83, 120);
+            btnRightInst3.BackColor = Color.FromArgb(255, 42, 83, 120);
             panelRightInst.BackColor = Color.FromArgb(255, 32, 43, 54);
             panelRightConfirm.BackColor = Color.FromArgb(255, 32, 43, 54);
             panelRightEffects.BackColor = Color.FromArgb(255, 32, 43, 54);
@@ -196,7 +208,10 @@ namespace Krasivator
             ToolTip t = new ToolTip();
             t.SetToolTip(btnRightInst1, "Перемещение");
             t.SetToolTip(btnRightInst2, "Кисть");
-
+            t.SetToolTip(btnRightInst3, "Кривые");
+            //
+            btnCurve1.Location = new Point(-20, -20);
+            btnCurve2.Location = new Point(-20, -20);
         }
         void setInactiveRight()
         {
@@ -296,7 +311,12 @@ namespace Krasivator
             int xOffset;
             int yOffset;
             if (isPainting)
+            {
                 isDown = true;
+                Point mousePos = Control.MousePosition;
+                mousePos.Offset(0 - this.Location.X - panel1.Location.X - (int)(boxBrushSize.Value / 2), 0 - this.Location.Y - panel1.Location.Y - (int)(boxBrushSize.Value / 2));
+                lastDot = mousePos;
+            }
             if (e.Button == MouseButtons.Left && isConfirm)
             {
                 xOffset = -e.X - SystemInformation.FrameBorderSize.Width;
@@ -311,10 +331,15 @@ namespace Krasivator
             if (isPainting && isDown)
             {
                 SolidBrush brush = new SolidBrush(color);
+               // Pen p = new Pen(color);
+                //p.Width = (float)boxBrushSize.Value;
                 Point mousePos = Control.MousePosition;
                 mousePos.Offset(0 - this.Location.X - panel1.Location.X - (int)(boxBrushSize.Value/2), 0 - this.Location.Y - panel1.Location.Y- (int)(boxBrushSize.Value / 2));
                 g.FillEllipse(brush, mousePos.X, mousePos.Y, (float)boxBrushSize.Value, (float)boxBrushSize.Value);
+                //g.DrawLine(p, lastDot.X, lastDot.Y, mousePos.X, mousePos.Y);
+                lastDot = mousePos;
                 pictureBox2.Refresh();
+
             }
             if (isMouseDown)
             {
@@ -335,8 +360,14 @@ namespace Krasivator
         string lastOperation = "";
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+
             isConfirm = false;
             isPainting = false;
+            isPaintingCurves = false;
+            btnCurve1.Location = new Point(-20, -20);
+            btnCurve2.Location = new Point(-20, -20);
+            curvesClick = 0;
+            pictureBox2.Refresh();
             setInactiveRight();
             setActiveLeft();
             btnLeftInst.Enabled = false;
@@ -359,6 +390,9 @@ namespace Krasivator
                     drawPictureBox();
                     break;
                 case "draw":
+                    drawPictureBox();
+                    break;
+                case "curves":
                     drawPictureBox();
                     break;
 
@@ -638,7 +672,9 @@ namespace Krasivator
             color = colorDialog1.Color;
             btnColor.BackColor = color;            
         }
-
+        int curvesClick = 0;
+        Point pCurves1, pCurves2,pCurves3,pCurves4;
+        Point lastDot;
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             //Pen p = new Pen(color,)
@@ -651,8 +687,51 @@ namespace Krasivator
                     Point mousePos = Control.MousePosition;
                     mousePos.Offset( 0- this.Location.X - panel1.Location.X- (int)(boxBrushSize.Value / 2), 0- this.Location.Y - panel1.Location.Y- (int)(boxBrushSize.Value / 2));
                     g.FillEllipse(brush, mousePos.X, mousePos.Y, (float)boxBrushSize.Value, (float)boxBrushSize.Value);
+                
                 pictureBox2.Refresh();
                 
+            }
+            if(isPaintingCurves)
+            {
+                if(curvesClick==0)
+                {
+
+                    btnCurve1.Visible = false;
+                    btnCurve2.Visible = false;
+                    pCurves1 = Control.MousePosition;
+                    pCurves1.Offset(0 - this.Location.X - panel1.Location.X, 0 - this.Location.Y - panel1.Location.Y );
+                    curvesClick++;
+                }
+                else if(curvesClick==1)
+                {
+                    pCurves2 = Control.MousePosition;
+                    pCurves2.Offset(0 - this.Location.X - panel1.Location.X , 0 - this.Location.Y - panel1.Location.Y);
+                    curvesClick++;
+                }
+                else if (curvesClick == 2)
+                {
+                    pCurves3 = Control.MousePosition;
+                    pCurves3.Offset(0 - this.Location.X - panel1.Location.X, 0 - this.Location.Y - panel1.Location.Y );
+                    curvesClick++;
+                }
+                else if(curvesClick==3)
+                {
+
+                    btnCurve1.Visible = true;
+                    btnCurve2.Visible = true;
+                    Pen brush = new Pen(color);
+                    brush.Width = (float)boxBrushSize.Value;
+                    Point mousePos = Control.MousePosition;
+                    mousePos.Offset(0 - this.Location.X - panel1.Location.X , 0 - this.Location.Y - panel1.Location.Y );
+                    curvesClick = 0;
+                    pCurves4 = mousePos;
+                    g.DrawBezier(brush, pCurves1, pCurves2, pCurves3, mousePos);
+                    pictureBox2.Refresh();
+                    
+                  //  btnCurve1.Location = pCurves2;
+                 //   btnCurve2.Location = pCurves3;
+                    
+                }
             }
         }
 
@@ -826,6 +905,56 @@ namespace Krasivator
             {
                 saveImage(frm.getImage());
             }
+        }
+
+        bool isDown2;
+        private void btnCurve1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDown2 = true;
+        }
+
+        private void btnCurve1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control c = sender as Control;
+            if (isDown2)
+            {
+                Point pt = this.PointToClient(new Point(Control.MousePosition.X - panel1.Location.X - 5, Control.MousePosition.Y - panel1.Location.Y - 5));
+                
+                    c.Location = pt;
+
+
+
+            }
+        }
+
+        private void btnCurve1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDown2 = false;
+            Pen brush = new Pen(color);
+            brush.Width = (float)boxBrushSize.Value;
+            pCurves2 = Control.MousePosition;
+            pCurves2.Offset(0 - this.Location.X - panel1.Location.X, 0 - this.Location.Y - panel1.Location.Y);
+            pictureBox2.Image = (Bitmap)images.Last().bmp.Clone();
+
+            Graphics g1 = Graphics.FromImage(pictureBox2.Image);
+            
+            g1.DrawBezier(brush, pCurves1, pCurves2, pCurves3, pCurves4);
+            g.DrawBezier(brush, pCurves1, pCurves2, pCurves3, pCurves4);
+            //pictureBox2.Refresh();
+        }
+
+        bool isPaintingCurves =false;
+        private void btnRightInst3_Click(object sender, EventArgs e)
+        {
+            lastOperation = "curves";
+            secondImage = new MyImage(imageW, imageH);
+            secondImage.bmp = (Bitmap)pictureBox1.Image.Clone();
+            pictureBox2.Image = secondImage.bmp;
+            pictureBox2.Location = new Point(0, 0);
+            isPaintingCurves = true;
+            g = Graphics.FromImage(pictureBox2.Image);
+
+            setConfirmVisible();
         }
 
         private void btnLeftInst_Click(object sender, EventArgs e)
