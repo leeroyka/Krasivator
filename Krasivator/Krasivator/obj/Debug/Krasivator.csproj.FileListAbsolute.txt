@@ -11,3 +11,16 @@ C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Kra
 C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.FormWait.resources
 C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.FormBar.resources
 C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.FormCurves.resources
+E:\krasivator\Krasivator\bin\Debug\Krasivator.exe.config
+E:\krasivator\Krasivator\bin\Debug\Krasivator.exe
+E:\krasivator\Krasivator\bin\Debug\Krasivator.pdb
+E:\krasivator\Krasivator\obj\Debug\Krasivator.csprojAssemblyReference.cache
+E:\krasivator\Krasivator\obj\Debug\Krasivator.Form1.resources
+E:\krasivator\Krasivator\obj\Debug\Krasivator.FormBar.resources
+E:\krasivator\Krasivator\obj\Debug\Krasivator.formCreate.resources
+E:\krasivator\Krasivator\obj\Debug\Krasivator.FormCurves.resources
+E:\krasivator\Krasivator\obj\Debug\Krasivator.FormWait.resources
+E:\krasivator\Krasivator\obj\Debug\Krasivator.Properties.Resources.resources
+E:\krasivator\Krasivator\obj\Debug\Krasivator.csproj.GenerateResource.cache
+E:\krasivator\Krasivator\obj\Debug\Krasivator.exe
+E:\krasivator\Krasivator\obj\Debug\Krasivator.pdb

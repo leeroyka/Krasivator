@@ -12,11 +12,16 @@ namespace Krasivator
 {
     public partial class FormCurves : Form
     {
+        int[] gistogrammaR;
+        int[] gistogrammaG;
+        int[] gistogrammaB;
         int[] outputR;
         int[] outputG;
         int[] outputB;
         int[] output;
         MyImage img;
+
+        int maxR = 0, maxG = 0, maxB = 0;
         public FormCurves(MyImage image)
         {
             InitializeComponent();
@@ -27,12 +32,53 @@ namespace Krasivator
             pictureBox3.BackColor = Color.FromArgb(255, 14, 22, 33);
             xToolStripMenuItem.ForeColor = Color.FromArgb(255, 87, 102, 115);
             button1.BackColor = Color.FromArgb(255, 39, 105, 153);
+            img = image;
+
+            maxR = 0;
+            maxG = 0;
+            maxB = 0;
+            gistogrammaR = new int[256];
+            gistogrammaG = new int[256];
+            gistogrammaB = new int[256];
+
+            countingGistogramm();
             Draw(1, btnR1.Location, btnR2.Location, btnR3.Location);
             Draw(2, btnG1.Location, btnG2.Location, btnG3.Location);
             Draw(3, btnB1.Location, btnB2.Location, btnB3.Location);
-            img = image;
-
             frmWait = new FormWait();
+        }
+        void countingGistogramm()
+        {
+
+            var (w, h) = img.getSize();
+            for (int i = 0; i < h; ++i)
+            {
+                for (int j = 0; j < w; ++j)
+                {
+
+                    var (r, g, b) = img.getPixel(j, i);
+                    gistogrammaR[r]++;
+                    gistogrammaG[g]++;
+                    gistogrammaB[b]++;
+
+                }
+            }
+            for(int i=0;i<256;i++)
+            {
+                if (gistogrammaR[i] >= maxR)
+                    maxR = gistogrammaR[i];
+
+                if (gistogrammaG[i] >= maxG)
+                    maxG = gistogrammaG[i];
+
+                if (gistogrammaB[i] >= maxB)
+                    maxB = gistogrammaB[i];
+
+            }
+        }
+        void drawGistrogram()
+        {
+            
         }
         void Draw(int param,Point p1,Point p2,Point p3)
         {
@@ -81,36 +127,55 @@ namespace Krasivator
             }
 
             g = Graphics.FromImage(bmp);
+
+            Pen p = new Pen(Color.FromArgb(200, 200, 200));
+            p.Width = 2;
+            for (int i = 0; i < 256; i = i + 2)
+            {
+                int parY = 0;
+                if (param == 1)
+                    parY = (int)(255.0 / (double)maxR * (double)gistogrammaR[i]);
+                if (param == 2)
+                    parY = (int)(255.0 / (double)maxG * (double)gistogrammaG[i]);
+                if (param == 3)
+                    parY = (int)(255.0 / (double)maxB * (double)gistogrammaB[i]);
+                if (parY < 256)
+                    g.DrawLine(p, i, 255, i, 255 - parY);
+            }
+            p.Width = 1;
+            p = new Pen(Color.FromArgb(52, 52, 52));
             //Grid
             for (int i = 0; i < 256; i = i + (256 / 16))
             {
-                Pen p = new Pen(Color.FromArgb(52, 52, 52));
+               
                 if (i == 256)
                     i = 254;
                 g.DrawLine(p, i, 0, i, 255);
             }
             for (int i = 0; i < 256; i = i + (256 / 16))
             {
-                Pen p = new Pen(Color.FromArgb(52, 52, 52));
                 if (i == 256)
                     i = 254;
                 g.DrawLine(p, 0, i, 255, i);
             }
-
+            p = new Pen(Color.FromArgb(122, 122, 122));
             for (int i = 0; i <= 256; i = i + (256 / 4))
             {
-                Pen p = new Pen(Color.FromArgb(122, 122, 122));
+                 
                 if (i == 256)
                     i = 254;
                 g.DrawLine(p, 0,i, 255, i);
             }
             for (int i = 0; i <= 256; i = i + (256 / 4))
             {
-                Pen p = new Pen(Color.FromArgb(122, 122, 122));
+                
                 if (i == 256)
                     i = 254;
                 g.DrawLine(p, i, 0, i, 255);
             }
+
+            //
+
             //
             for (int i=0;i<256;i++)
             {
@@ -552,6 +617,11 @@ namespace Krasivator
             btnB2.Location = new Point(123, 123);
             btnB3.Location = new Point(250, -5);
             Draw(3, btnB1.Location, btnB2.Location, btnB3.Location);
+        }
+
+        private void FormCurves_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

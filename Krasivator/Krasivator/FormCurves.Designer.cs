@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnR3 = new System.Windows.Forms.Button();
+            this.btnR2 = new System.Windows.Forms.Button();
+            this.btnR1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.xToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,9 +39,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnR1 = new System.Windows.Forms.Button();
-            this.btnR2 = new System.Windows.Forms.Button();
-            this.btnR3 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnG3 = new System.Windows.Forms.Button();
             this.btnG2 = new System.Windows.Forms.Button();
@@ -68,6 +68,45 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(265, 265);
             this.panel1.TabIndex = 0;
+            // 
+            // btnR3
+            // 
+            this.btnR3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnR3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnR3.Location = new System.Drawing.Point(250, -5);
+            this.btnR3.Name = "btnR3";
+            this.btnR3.Size = new System.Drawing.Size(10, 10);
+            this.btnR3.TabIndex = 1;
+            this.btnR3.UseVisualStyleBackColor = false;
+            this.btnR3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnR3_MouseDown);
+            this.btnR3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnR3_MouseMove);
+            this.btnR3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnR3_MouseUp);
+            // 
+            // btnR2
+            // 
+            this.btnR2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnR2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnR2.Location = new System.Drawing.Point(123, 123);
+            this.btnR2.Name = "btnR2";
+            this.btnR2.Size = new System.Drawing.Size(10, 10);
+            this.btnR2.TabIndex = 1;
+            this.btnR2.UseVisualStyleBackColor = false;
+            this.btnR2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnR2_MouseDown);
+            this.btnR2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnR2_MouseMove);
+            this.btnR2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnR2_MouseUp);
+            // 
+            // btnR1
+            // 
+            this.btnR1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnR1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnR1.Location = new System.Drawing.Point(-5, 250);
+            this.btnR1.Name = "btnR1";
+            this.btnR1.Size = new System.Drawing.Size(10, 10);
+            this.btnR1.TabIndex = 1;
+            this.btnR1.UseVisualStyleBackColor = false;
+            this.btnR1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnR1_MouseDown);
+            this.btnR1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnR1_MouseMove);
+            this.btnR1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnR1_MouseUp);
             // 
             // pictureBox1
             // 
@@ -142,45 +181,6 @@
             this.button1.Text = "Подтвердить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnR1
-            // 
-            this.btnR1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnR1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnR1.Location = new System.Drawing.Point(-5, 250);
-            this.btnR1.Name = "btnR1";
-            this.btnR1.Size = new System.Drawing.Size(10, 10);
-            this.btnR1.TabIndex = 1;
-            this.btnR1.UseVisualStyleBackColor = false;
-            this.btnR1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnR1_MouseDown);
-            this.btnR1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnR1_MouseMove);
-            this.btnR1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnR1_MouseUp);
-            // 
-            // btnR2
-            // 
-            this.btnR2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnR2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnR2.Location = new System.Drawing.Point(123, 123);
-            this.btnR2.Name = "btnR2";
-            this.btnR2.Size = new System.Drawing.Size(10, 10);
-            this.btnR2.TabIndex = 1;
-            this.btnR2.UseVisualStyleBackColor = false;
-            this.btnR2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnR2_MouseDown);
-            this.btnR2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnR2_MouseMove);
-            this.btnR2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnR2_MouseUp);
-            // 
-            // btnR3
-            // 
-            this.btnR3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnR3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnR3.Location = new System.Drawing.Point(250, -5);
-            this.btnR3.Name = "btnR3";
-            this.btnR3.Size = new System.Drawing.Size(10, 10);
-            this.btnR3.TabIndex = 1;
-            this.btnR3.UseVisualStyleBackColor = false;
-            this.btnR3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnR3_MouseDown);
-            this.btnR3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnR3_MouseMove);
-            this.btnR3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnR3_MouseUp);
             // 
             // panel2
             // 
@@ -328,6 +328,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormCurves";
+            this.Load += new System.EventHandler(this.FormCurves_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormCurves_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FormCurves_MouseUp);
             this.panel1.ResumeLayout(false);
