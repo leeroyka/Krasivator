@@ -46,6 +46,7 @@
             this.panelRightInst = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRightInst1 = new System.Windows.Forms.Button();
             this.btnRightInst2 = new System.Windows.Forms.Button();
+            this.btnRightInst3 = new System.Windows.Forms.Button();
             this.panelRightConfirm = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.boxOverlay = new System.Windows.Forms.ComboBox();
@@ -64,14 +65,14 @@
             this.btnBright = new System.Windows.Forms.Button();
             this.btnContrast = new System.Windows.Forms.Button();
             this.btnNoise = new System.Windows.Forms.Button();
+            this.btnCurves = new System.Windows.Forms.Button();
             this.debug = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnCurves = new System.Windows.Forms.Button();
-            this.btnRightInst3 = new System.Windows.Forms.Button();
-            this.btnCurve1 = new System.Windows.Forms.PictureBox();
             this.btnCurve2 = new System.Windows.Forms.PictureBox();
+            this.btnCurve1 = new System.Windows.Forms.PictureBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btnBin = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,8 +86,8 @@
             this.panelRightEffects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCurve1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCurve2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCurve1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -155,39 +156,40 @@
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
             this.FileToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.FileToolStripMenuItem.Text = "Файл";
+            this.FileToolStripMenuItem.Click += new System.EventHandler(this.FileToolStripMenuItem_Click);
             // 
             // создатьToolStripMenuItem
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.создатьToolStripMenuItem.Text = "Создать";
             this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // saveagainToolStripMenuItem
             // 
             this.saveagainToolStripMenuItem.Name = "saveagainToolStripMenuItem";
-            this.saveagainToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.saveagainToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveagainToolStripMenuItem.Text = "Сохранить";
             this.saveagainToolStripMenuItem.Click += new System.EventHandler(this.saveagainToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Сохранить как";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -273,6 +275,21 @@
             this.btnRightInst2.Text = "2";
             this.btnRightInst2.UseVisualStyleBackColor = true;
             this.btnRightInst2.Click += new System.EventHandler(this.btnRightInst2_Click);
+            // 
+            // btnRightInst3
+            // 
+            this.btnRightInst3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRightInst3.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnRightInst3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRightInst3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnRightInst3.ForeColor = System.Drawing.Color.White;
+            this.btnRightInst3.Location = new System.Drawing.Point(75, 3);
+            this.btnRightInst3.Name = "btnRightInst3";
+            this.btnRightInst3.Size = new System.Drawing.Size(30, 30);
+            this.btnRightInst3.TabIndex = 2;
+            this.btnRightInst3.Text = "3";
+            this.btnRightInst3.UseVisualStyleBackColor = true;
+            this.btnRightInst3.Click += new System.EventHandler(this.btnRightInst3_Click);
             // 
             // panelRightConfirm
             // 
@@ -469,9 +486,10 @@
             this.panelRightEffects.Controls.Add(this.btnContrast);
             this.panelRightEffects.Controls.Add(this.btnNoise);
             this.panelRightEffects.Controls.Add(this.btnCurves);
+            this.panelRightEffects.Controls.Add(this.btnBin);
             this.panelRightEffects.Location = new System.Drawing.Point(3, 311);
             this.panelRightEffects.Name = "panelRightEffects";
-            this.panelRightEffects.Size = new System.Drawing.Size(206, 148);
+            this.panelRightEffects.Size = new System.Drawing.Size(206, 184);
             this.panelRightEffects.TabIndex = 4;
             // 
             // btnBright
@@ -522,11 +540,27 @@
             this.btnNoise.UseVisualStyleBackColor = true;
             this.btnNoise.Click += new System.EventHandler(this.btnNoise_Click);
             // 
+            // btnCurves
+            // 
+            this.btnCurves.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCurves.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnCurves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCurves.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnCurves.ForeColor = System.Drawing.Color.White;
+            this.btnCurves.Location = new System.Drawing.Point(8, 111);
+            this.btnCurves.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnCurves.Name = "btnCurves";
+            this.btnCurves.Size = new System.Drawing.Size(188, 30);
+            this.btnCurves.TabIndex = 1;
+            this.btnCurves.Text = "Кривые";
+            this.btnCurves.UseVisualStyleBackColor = true;
+            this.btnCurves.Click += new System.EventHandler(this.btnCurves_Click);
+            // 
             // debug
             // 
             this.debug.AutoSize = true;
             this.debug.ForeColor = System.Drawing.Color.Black;
-            this.debug.Location = new System.Drawing.Point(3, 462);
+            this.debug.Location = new System.Drawing.Point(3, 498);
             this.debug.Name = "debug";
             this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
@@ -559,36 +593,15 @@
             this.panel1.Size = new System.Drawing.Size(693, 591);
             this.panel1.TabIndex = 5;
             // 
-            // btnCurves
+            // btnCurve2
             // 
-            this.btnCurves.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCurves.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnCurves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCurves.Font = new System.Drawing.Font("Candara", 9F);
-            this.btnCurves.ForeColor = System.Drawing.Color.White;
-            this.btnCurves.Location = new System.Drawing.Point(8, 111);
-            this.btnCurves.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
-            this.btnCurves.Name = "btnCurves";
-            this.btnCurves.Size = new System.Drawing.Size(188, 30);
-            this.btnCurves.TabIndex = 1;
-            this.btnCurves.Text = "Кривые";
-            this.btnCurves.UseVisualStyleBackColor = true;
-            this.btnCurves.Click += new System.EventHandler(this.btnCurves_Click);
-            // 
-            // btnRightInst3
-            // 
-            this.btnRightInst3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRightInst3.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnRightInst3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRightInst3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnRightInst3.ForeColor = System.Drawing.Color.White;
-            this.btnRightInst3.Location = new System.Drawing.Point(75, 3);
-            this.btnRightInst3.Name = "btnRightInst3";
-            this.btnRightInst3.Size = new System.Drawing.Size(30, 30);
-            this.btnRightInst3.TabIndex = 2;
-            this.btnRightInst3.Text = "3";
-            this.btnRightInst3.UseVisualStyleBackColor = true;
-            this.btnRightInst3.Click += new System.EventHandler(this.btnRightInst3_Click);
+            this.btnCurve2.BackColor = System.Drawing.Color.White;
+            this.btnCurve2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.btnCurve2.Location = new System.Drawing.Point(70, 12);
+            this.btnCurve2.Name = "btnCurve2";
+            this.btnCurve2.Size = new System.Drawing.Size(10, 10);
+            this.btnCurve2.TabIndex = 6;
+            this.btnCurve2.TabStop = false;
             // 
             // btnCurve1
             // 
@@ -603,15 +616,21 @@
             this.btnCurve1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseMove);
             this.btnCurve1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseUp);
             // 
-            // btnCurve2
+            // btnBin
             // 
-            this.btnCurve2.BackColor = System.Drawing.Color.White;
-            this.btnCurve2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.btnCurve2.Location = new System.Drawing.Point(70, 12);
-            this.btnCurve2.Name = "btnCurve2";
-            this.btnCurve2.Size = new System.Drawing.Size(10, 10);
-            this.btnCurve2.TabIndex = 6;
-            this.btnCurve2.TabStop = false;
+            this.btnBin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBin.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnBin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBin.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnBin.ForeColor = System.Drawing.Color.White;
+            this.btnBin.Location = new System.Drawing.Point(8, 147);
+            this.btnBin.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnBin.Name = "btnBin";
+            this.btnBin.Size = new System.Drawing.Size(188, 30);
+            this.btnBin.TabIndex = 1;
+            this.btnBin.Text = "Бинаризация";
+            this.btnBin.UseVisualStyleBackColor = true;
+            this.btnBin.Click += new System.EventHandler(this.btnBin_Click);
             // 
             // Form1
             // 
@@ -651,8 +670,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCurve1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCurve2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCurve1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -703,6 +722,7 @@
         private System.Windows.Forms.Button btnRightInst3;
         private System.Windows.Forms.PictureBox btnCurve1;
         private System.Windows.Forms.PictureBox btnCurve2;
+        private System.Windows.Forms.Button btnBin;
     }
 }
 

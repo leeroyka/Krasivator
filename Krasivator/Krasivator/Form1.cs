@@ -170,6 +170,7 @@ namespace Krasivator
             btnLeftEff.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnConfirm.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnCurves.BackColor = Color.FromArgb(255, 42, 83, 120);
+            btnBin.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst1.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst2.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst3.BackColor = Color.FromArgb(255, 42, 83, 120);
@@ -924,6 +925,25 @@ namespace Krasivator
 
 
 
+            }
+        }
+
+        private void FileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBin_Click(object sender, EventArgs e)
+        {
+            this.Opacity = .75;
+            MyImage newImage = new MyImage(imageW, imageH);
+            newImage.bmp = (Bitmap)images.Last().bmp.Clone();
+            FormBin frm = new FormBin(newImage);
+            frm.ShowDialog();
+            this.Opacity = 1;
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                saveImage(frm.getImage());
             }
         }
 

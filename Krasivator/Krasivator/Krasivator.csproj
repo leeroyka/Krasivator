@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Binarization.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +61,12 @@
     </Compile>
     <Compile Include="FormBar.Designer.cs">
       <DependentUpon>FormBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBin.Designer.cs">
+      <DependentUpon>FormBin.cs</DependentUpon>
     </Compile>
     <Compile Include="formCreate.cs">
       <SubType>Form</SubType>
@@ -88,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBar.resx">
       <DependentUpon>FormBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBin.resx">
+      <DependentUpon>FormBin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formCreate.resx">
       <DependentUpon>formCreate.cs</DependentUpon>

@@ -24,3 +24,4 @@ E:\krasivator\Krasivator\obj\Debug\Krasivator.Properties.Resources.resources
 E:\krasivator\Krasivator\obj\Debug\Krasivator.csproj.GenerateResource.cache
 E:\krasivator\Krasivator\obj\Debug\Krasivator.exe
 E:\krasivator\Krasivator\obj\Debug\Krasivator.pdb
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.FormBin.resources
