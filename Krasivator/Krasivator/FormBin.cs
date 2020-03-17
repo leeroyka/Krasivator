@@ -44,6 +44,8 @@ namespace Krasivator
 
             if (radioButton2.Checked)
                 Binarization.MethodOtsu(img);
+            if (radioButton3.Checked)
+                Binarization.MethodNiblec(img,param1,param2);
             this.Close();
         }
         public MyImage getImage()
@@ -123,7 +125,7 @@ namespace Krasivator
             textBox1.Text = "15";
 
             label2.Text = "Чувствительность:";
-            textBox2.Text = "-0.2";
+            textBox2.Text = "-0,2";
         }
 
         private void radioButton4_Click(object sender, EventArgs e)

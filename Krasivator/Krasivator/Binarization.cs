@@ -81,9 +81,47 @@ namespace Krasivator
                 }
             }
         }
-        public static void MethodNiblec(MyImage img)
+        public static void MethodNiblec(MyImage img,int param,double k)
         {
+            wait();
+            SetMonochrome(img);
+            int a = param / 2;
+            for (int i = 0; i < imageH; ++i)
+            {
+                double c = 50 / (double)imageH;
+                wait((int)(c * i) + 50);
+                for (int j = 0; j < imageW; ++j)
+                {
+                    
+                    int sum = 0;
+                    int sum2 = 0;
+                    int count = 0;
 
+                    var (r, g, b) = img.getPixel(j, i);
+                    for (int _i=i-a;_i<=i+a;_i++)
+                    {
+                        for(int _j=j-a;_j<=j+a;_j++)
+                        {
+                            if (_j < 0 || _j >= imageW || _i < 0 || _i >= imageH)
+                                continue;
+                            var (_r, _g, _b) = img.getPixel(_j, _i);
+                            sum += _r;
+                            sum2 += _r * _r;
+                            count++;
+                        }
+                    }
+                    double m = sum / count;
+                    double m2 = sum2 / count;
+                    double d = m2 - m * m;
+                    double otkl = Math.Sqrt(d);
+                    double t = m + k * otkl;
+                    if (r <= t)
+                        img.setPixel(j, i, 0, 0, 0);
+                    else
+                        img.setPixel(j, i, 255, 255, 255);
+                }
+            }
+            unWait();
         }
         public static void MethodOtsu(MyImage img)
         {
