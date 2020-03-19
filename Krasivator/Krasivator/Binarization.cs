@@ -81,35 +81,162 @@ namespace Krasivator
                 }
             }
         }
+        public static void MethodBredly(MyImage img, int param, double k)
+        {
+            wait();
+            SetMonochrome(img);
+            int a = param / 2;
+            int[,] sumArray = new int[imageW, imageH];
+            for (int i = 0; i < imageH; ++i)
+            {
+                double c = 25 / (double)imageH;
+                wait((int)(c * i) + 50);
+                for (int j = 0; j < imageW; ++j)
+                {
+
+                    var (r, g, b) = img.getPixel(j, i);
+
+                    int p1, p2, p3;
+                    if (j == 0)
+                        p1 = 0;
+                    else
+                        p1 = sumArray[j - 1, i];
+                    if (i == 0)
+                        p2 = 0;
+                    else
+                        p2 = sumArray[j, i - 1];
+                    if (i == 0 || j == 0)
+                        p3 = 0;
+                    else
+                        p3 = sumArray[j - 1, i - 1];
+
+                    sumArray[j, i] = r + p1 + p2 - p3;
+                }
+            }
+            for (int i = 0; i < imageH; ++i)
+            {
+                double c = 25 / (double)imageH;
+                wait((int)(c * i) + 75);
+                for (int j = 0; j < imageW; ++j)
+                {
+
+                    var (r, g, b) = img.getPixel(j, i);
+                    int x1, x2, y1, y2;
+                    x1 = j - a;
+                    x2 = j + a;
+                    y1 = i - a;
+                    y2 = i + a;
+                    if (x1 < 1)
+                        x1 = 1;
+                    if (x2 >= imageW)
+                        x2 = imageW - 1;
+                    if (y1 < 1)
+                        y1 = 1;
+                    if (y2 >= imageH)
+                        y2 = imageH - 1;
+                    int sum = sumArray[x2, y2] + sumArray[x1 - 1, y1 - 1] - sumArray[x1 - 1, y2] - sumArray[x2, y1 - 1];
+                    if (sum < 0)
+                        sum = sum * -1;
+                    int c1 = (x2 - x1) * (y2 - y1);
+                    int k1 = r * c1;
+                    int k2 =(int) ((double)sum * (1 - k));
+                    
+                    if (k1 < k2)
+                        img.setPixel(j, i, 0, 0, 0);
+                    else
+                        img.setPixel(j, i, 255, 255, 255);
+                }
+            }
+
+            unWait();
+        }
         public static void MethodNiblec(MyImage img,int param,double k)
         {
             wait();
             SetMonochrome(img);
             int a = param / 2;
+
+            int[,] sumArray = new int[imageW, imageH];
+            int[,] sumArray2 = new int[imageW, imageH];
             for (int i = 0; i < imageH; ++i)
             {
-                double c = 50 / (double)imageH;
+                double c = 25 / (double)imageH;
                 wait((int)(c * i) + 50);
                 for (int j = 0; j < imageW; ++j)
                 {
-                    
-                    int sum = 0;
-                    int sum2 = 0;
-                    int count = 0;
 
                     var (r, g, b) = img.getPixel(j, i);
-                    for (int _i=i-a;_i<=i+a;_i++)
-                    {
-                        for(int _j=j-a;_j<=j+a;_j++)
-                        {
-                            if (_j < 0 || _j >= imageW || _i < 0 || _i >= imageH)
-                                continue;
-                            var (_r, _g, _b) = img.getPixel(_j, _i);
-                            sum += _r;
-                            sum2 += _r * _r;
-                            count++;
-                        }
-                    }
+
+                    int p1, p2, p3;
+                    if (j == 0)
+                        p1 = 0;
+                    else
+                        p1 = sumArray[j - 1, i];
+                    if (i == 0)
+                        p2 = 0;
+                    else
+                        p2 = sumArray[j, i - 1];
+                    if (i == 0 || j == 0)
+                        p3 = 0;
+                    else
+                        p3 = sumArray[j - 1, i - 1];
+
+                    int p12, p22, p32;
+                    if (j == 0)
+                        p12 = 0;
+                    else
+                        p12 = sumArray2[j - 1, i];
+                    if (i == 0)
+                        p22 = 0;
+                    else
+                        p22 = sumArray2[j, i - 1];
+                    if (i == 0 || j == 0)
+                        p32 = 0;
+                    else
+                        p32 = sumArray2[j - 1, i - 1];
+                    sumArray[j, i] = r + p1 + p2 - p3;
+                    sumArray2[j, i] = r * r + p12 + p22 - p32;
+
+                }
+            }
+            for (int i = 0; i < imageH; ++i)
+            {
+                double c = 25 / (double)imageH;
+                wait((int)(c * i) + 75);
+                for (int j = 0; j < imageW; ++j)
+                {
+                    
+
+                    var (r, g, b) = img.getPixel(j, i);
+                    //for (int _i=i-a;_i<=i+a;_i++)
+                    //{
+                    //    for(int _j=j-a;_j<=j+a;_j++)
+                    //    {
+                    //        if (_j < 0 || _j >= imageW || _i < 0 || _i >= imageH)
+                    //            continue;
+                    //        var (_r, _g, _b) = img.getPixel(_j, _i);
+                    //        sum += _r;
+                    //        sum2 += _r * _r;
+                    //        count++;
+                    //    }
+                    //}
+                    int x1, x2, y1, y2;
+                    x1 = j - a;
+                    x2 = j + a;
+                    y1 = i - a;
+                    y2 = i + a;
+                    if (x1 < 1)
+                        x1 = 1;
+                    if (x2 >= imageW)
+                        x2 = imageW - 1;
+                    if (y1 < 1)
+                        y1 = 1;
+                    if (y2 >= imageH)
+                        y2 = imageH - 1;
+                    int sum = sumArray[x2, y2] + sumArray[x1 - 1, y1 - 1] - sumArray[x1 - 1, y2] - sumArray[x2, y1 - 1];     
+                    int sum2 = sumArray2[x2, y2] + sumArray2[x1 - 1, y1 - 1] - sumArray2[x1 - 1, y2] - sumArray2[x2, y1 - 1];
+                    int count = (x2 - x1) * (y2 - y1);
+
                     double m = sum / count;
                     double m2 = sum2 / count;
                     double d = m2 - m * m;

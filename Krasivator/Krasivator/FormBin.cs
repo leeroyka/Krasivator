@@ -46,6 +46,8 @@ namespace Krasivator
                 Binarization.MethodOtsu(img);
             if (radioButton3.Checked)
                 Binarization.MethodNiblec(img,param1,param2);
+            if(radioButton4.Checked)
+                Binarization.MethodBredly(img, param1, param2);
             this.Close();
         }
         public MyImage getImage()
@@ -134,7 +136,7 @@ namespace Krasivator
             textBox2.Enabled = true;
             textBox1.Text = "15";
             label2.Text = "t: ";
-            textBox2.Text = "0.15";
+            textBox2.Text = "0,15";
         }
     }
 }

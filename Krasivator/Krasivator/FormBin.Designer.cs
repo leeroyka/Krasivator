@@ -185,6 +185,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormBin";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormBin";
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormBin_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FormBin_MouseUp);
