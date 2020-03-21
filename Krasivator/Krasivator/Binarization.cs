@@ -164,7 +164,7 @@ namespace Krasivator
                 wait((int)(c * i) + 50);
                 for (int j = 0; j < imageW; ++j)
                 {
-
+                    
                     var (r, g, b) = img.getPixel(j, i);
 
                     int p1, p2, p3;
@@ -180,7 +180,7 @@ namespace Krasivator
                         p3 = 0;
                     else
                         p3 = sumArray[j - 1, i - 1];
-
+                    ////
                     int p12, p22, p32;
                     if (j == 0)
                         p12 = 0;
@@ -197,6 +197,7 @@ namespace Krasivator
                     sumArray[j, i] = r + p1 + p2 - p3;
                     sumArray2[j, i] = r * r + p12 + p22 - p32;
 
+
                 }
             }
             for (int i = 0; i < imageH; ++i)
@@ -208,18 +209,7 @@ namespace Krasivator
                     
 
                     var (r, g, b) = img.getPixel(j, i);
-                    //for (int _i=i-a;_i<=i+a;_i++)
-                    //{
-                    //    for(int _j=j-a;_j<=j+a;_j++)
-                    //    {
-                    //        if (_j < 0 || _j >= imageW || _i < 0 || _i >= imageH)
-                    //            continue;
-                    //        var (_r, _g, _b) = img.getPixel(_j, _i);
-                    //        sum += _r;
-                    //        sum2 += _r * _r;
-                    //        count++;
-                    //    }
-                    //}
+                    int debug = 0;
                     int x1, x2, y1, y2;
                     x1 = j - a;
                     x2 = j + a;
@@ -233,10 +223,28 @@ namespace Krasivator
                         y1 = 1;
                     if (y2 >= imageH)
                         y2 = imageH - 1;
+                    
                     int sum = sumArray[x2, y2] + sumArray[x1 - 1, y1 - 1] - sumArray[x1 - 1, y2] - sumArray[x2, y1 - 1];     
                     int sum2 = sumArray2[x2, y2] + sumArray2[x1 - 1, y1 - 1] - sumArray2[x1 - 1, y2] - sumArray2[x2, y1 - 1];
-                    int count = (x2 - x1) * (y2 - y1);
-
+                    int count = (x2 - x1+1) * (y2 - y1+1);
+                    //count = 0;
+                    //sum = 0;
+                    //sum2 = 0;
+                    //for (int _i = i - a; _i <= i + a; _i++)
+                    //{
+                    //    for (int _j = j - a; _j <= j + a; _j++)
+                    //    {
+                    //        if (_j < 0 || _j >= imageW || _i < 0 || _i >= imageH)
+                    //            continue;
+                    //        var (_r, _g, _b) = img.getPixel(_j, _i);
+                    //        sum += _r;
+                    //        sum2 += _r * _r;
+                    //        count++;
+                    //    }
+                    //}
+                    if (i == 30)
+                        if (j == 30)
+                            debug++;
                     double m = sum / count;
                     double m2 = sum2 / count;
                     double d = m2 - m * m;
