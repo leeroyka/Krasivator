@@ -171,6 +171,7 @@ namespace Krasivator
             btnConfirm.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnCurves.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnBin.BackColor = Color.FromArgb(255, 42, 83, 120);
+            btnMatrix.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst1.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst2.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst3.BackColor = Color.FromArgb(255, 42, 83, 120);
@@ -939,6 +940,20 @@ namespace Krasivator
             MyImage newImage = new MyImage(imageW, imageH);
             newImage.bmp = (Bitmap)images.Last().bmp.Clone();
             FormBin frm = new FormBin(newImage);
+            frm.ShowDialog();
+            this.Opacity = 1;
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                saveImage(frm.getImage());
+            }
+        }
+
+        private void btnMatrix_Click(object sender, EventArgs e)
+        {
+            this.Opacity = .75;
+            MyImage newImage = new MyImage(imageW, imageH);
+            newImage.bmp = (Bitmap)images.Last().bmp.Clone();
+            FormMatrix frm = new FormMatrix(newImage);
             frm.ShowDialog();
             this.Opacity = 1;
             if (frm.DialogResult == DialogResult.OK)

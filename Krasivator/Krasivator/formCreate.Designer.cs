@@ -165,6 +165,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "formCreate";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "formCreate";
             this.Load += new System.EventHandler(this.formCreate_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.formCreate_MouseMove);

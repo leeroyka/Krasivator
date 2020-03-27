@@ -80,12 +80,19 @@
     <Compile Include="FormCurves.Designer.cs">
       <DependentUpon>FormCurves.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMatrix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMatrix.Designer.cs">
+      <DependentUpon>FormMatrix.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWait.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormWait.Designer.cs">
       <DependentUpon>FormWait.cs</DependentUpon>
     </Compile>
+    <Compile Include="MatrixProcessing.cs" />
     <Compile Include="MyImage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCurves.resx">
       <DependentUpon>FormCurves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatrix.resx">
+      <DependentUpon>FormMatrix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWait.resx">
       <DependentUpon>FormWait.cs</DependentUpon>

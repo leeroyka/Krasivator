@@ -66,13 +66,14 @@
             this.btnContrast = new System.Windows.Forms.Button();
             this.btnNoise = new System.Windows.Forms.Button();
             this.btnCurves = new System.Windows.Forms.Button();
+            this.btnBin = new System.Windows.Forms.Button();
             this.debug = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCurve2 = new System.Windows.Forms.PictureBox();
             this.btnCurve1 = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnBin = new System.Windows.Forms.Button();
+            this.btnMatrix = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -161,35 +162,35 @@
             // создатьToolStripMenuItem
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.создатьToolStripMenuItem.Text = "Создать";
             this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // saveagainToolStripMenuItem
             // 
             this.saveagainToolStripMenuItem.Name = "saveagainToolStripMenuItem";
-            this.saveagainToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveagainToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveagainToolStripMenuItem.Text = "Сохранить";
             this.saveagainToolStripMenuItem.Click += new System.EventHandler(this.saveagainToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.saveToolStripMenuItem.Text = "Сохранить как";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -487,9 +488,10 @@
             this.panelRightEffects.Controls.Add(this.btnNoise);
             this.panelRightEffects.Controls.Add(this.btnCurves);
             this.panelRightEffects.Controls.Add(this.btnBin);
+            this.panelRightEffects.Controls.Add(this.btnMatrix);
             this.panelRightEffects.Location = new System.Drawing.Point(3, 311);
             this.panelRightEffects.Name = "panelRightEffects";
-            this.panelRightEffects.Size = new System.Drawing.Size(206, 184);
+            this.panelRightEffects.Size = new System.Drawing.Size(206, 222);
             this.panelRightEffects.TabIndex = 4;
             // 
             // btnBright
@@ -556,11 +558,27 @@
             this.btnCurves.UseVisualStyleBackColor = true;
             this.btnCurves.Click += new System.EventHandler(this.btnCurves_Click);
             // 
+            // btnBin
+            // 
+            this.btnBin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBin.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnBin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBin.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnBin.ForeColor = System.Drawing.Color.White;
+            this.btnBin.Location = new System.Drawing.Point(8, 147);
+            this.btnBin.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnBin.Name = "btnBin";
+            this.btnBin.Size = new System.Drawing.Size(188, 30);
+            this.btnBin.TabIndex = 1;
+            this.btnBin.Text = "Бинаризация";
+            this.btnBin.UseVisualStyleBackColor = true;
+            this.btnBin.Click += new System.EventHandler(this.btnBin_Click);
+            // 
             // debug
             // 
             this.debug.AutoSize = true;
             this.debug.ForeColor = System.Drawing.Color.Black;
-            this.debug.Location = new System.Drawing.Point(3, 498);
+            this.debug.Location = new System.Drawing.Point(3, 536);
             this.debug.Name = "debug";
             this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
@@ -616,21 +634,21 @@
             this.btnCurve1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseMove);
             this.btnCurve1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseUp);
             // 
-            // btnBin
+            // btnMatrix
             // 
-            this.btnBin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBin.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnBin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBin.Font = new System.Drawing.Font("Candara", 9F);
-            this.btnBin.ForeColor = System.Drawing.Color.White;
-            this.btnBin.Location = new System.Drawing.Point(8, 147);
-            this.btnBin.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
-            this.btnBin.Name = "btnBin";
-            this.btnBin.Size = new System.Drawing.Size(188, 30);
-            this.btnBin.TabIndex = 1;
-            this.btnBin.Text = "Бинаризация";
-            this.btnBin.UseVisualStyleBackColor = true;
-            this.btnBin.Click += new System.EventHandler(this.btnBin_Click);
+            this.btnMatrix.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMatrix.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnMatrix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMatrix.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnMatrix.ForeColor = System.Drawing.Color.White;
+            this.btnMatrix.Location = new System.Drawing.Point(8, 183);
+            this.btnMatrix.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnMatrix.Name = "btnMatrix";
+            this.btnMatrix.Size = new System.Drawing.Size(188, 30);
+            this.btnMatrix.TabIndex = 1;
+            this.btnMatrix.Text = "Матричные фильтры";
+            this.btnMatrix.UseVisualStyleBackColor = true;
+            this.btnMatrix.Click += new System.EventHandler(this.btnMatrix_Click);
             // 
             // Form1
             // 
@@ -723,6 +741,7 @@
         private System.Windows.Forms.PictureBox btnCurve1;
         private System.Windows.Forms.PictureBox btnCurve2;
         private System.Windows.Forms.Button btnBin;
+        private System.Windows.Forms.Button btnMatrix;
     }
 }
 
