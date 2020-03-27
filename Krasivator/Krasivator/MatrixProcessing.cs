@@ -24,19 +24,13 @@ namespace Krasivator
         {
             frmWait.Hide();
         }
-        private static void Swap(ref int a, ref int b)
-        {
-            int c = a;
-            a = b;
-            b = c;
-        }
         static int part(int[] arr, int low, int high)
         {
             int pivot = arr[high], loc = low, c;
             for (int i = low; i <= high; i++)
             {
                 
-                if (arr[i] < pivot)
+                if (arr[i] <pivot)
                 {
                     c = arr[i];
                     arr[i] = arr[loc];
@@ -60,6 +54,7 @@ namespace Krasivator
             else
                 return quickSelect(arr, low, p - 1, k);
         }
+
         public static void Median(MyImage img, int m)
         {
             wait();
@@ -104,9 +99,9 @@ namespace Krasivator
                             it++;
                         }
                     }
-                    int medianR = quickSelect(matrixR, 0, m * m - 1, m + 1);
-                    int medianG = quickSelect(matrixG, 0, m * m - 1, m + 1);
-                    int medianB = quickSelect(matrixB, 0, m * m - 1, m + 1);
+                    int medianR = quickSelect(matrixR, 0, m * m - 1, m * m / 2);
+                    int medianG = quickSelect(matrixG, 0, m * m - 1, m * m / 2);
+                    int medianB = quickSelect(matrixB, 0, m * m - 1, m * m / 2);
 
                     newImage.setPixel(j, i, medianR, medianG, medianB);
                 }
@@ -170,5 +165,7 @@ namespace Krasivator
             
             unWait();
         }
+        
     }
+    
 }
