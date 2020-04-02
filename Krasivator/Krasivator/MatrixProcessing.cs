@@ -55,9 +55,77 @@ namespace Krasivator
                 return quickSelect(arr, low, p - 1, k);
         }
 
+        static int forgetfulSelect(int[] arr,int n)
+        {
+            int x = (n - 3) / 2;
+            int[] a = new int[3 + x];
+            int[] b = new int[x];
+            Array.Copy(arr, 0, a, 0, 3 + x);
+            Array.Copy(arr, 3 + x, b, 0, x);
+            
+            int shift = 0;
+            int it = 0;
+            
+            while(true)
+            {
+                //for(int i=0+shift+1;i<a.Length;i++)
+                //{
+                //    if(a[i]>a[i-1])
+                //    {
+                //        int c = a[i-1];
+                //        a[i - 1] = a[i];
+                //        a[i] = c;
+                //    }
+                //}
+                //for (int i = a.Length-2; i >=0+shift; i--)
+                //{
+                //    if (a[i] < a[i + 1])
+                //    {
+                //        int c = a[i + 1];
+                //        a[i + 1] = a[i];
+                //        a[i] = c;
+                //    }
+                //}
+                int max = 0, min = 255,imax=0,imin=0;
+                for(int i=0+shift;i<a.Length;i++)
+                {
+                    if(a[i]>=max)
+                    {
+                        max = a[i];
+                        imax = i;
+                    }
+                    if(a[i]<=min)
+                    {
+                        min = a[i];
+                        imin = i;
+                    }
+
+                }
+                int c = a[shift];
+                a[shift] = a[imax];
+                a[imin] = c;
+                c =a[a.Length - 1];
+                a[a.Length - 1] = a[imax];
+                a[imax] = c;
+                shift++;
+                if (it >= x)
+                    break;
+                a[a.Length - 1] = b[it];
+                it++;
+
+
+
+            }
+
+            return a[a.Length-2];
+        }
+        
+        public static TimeSpan timeResult;
         public static void Median(MyImage img, int m)
         {
             wait();
+            DateTime timeStart = DateTime.Now;
+
             (imageW, imageH) = img.getSize();
             MyImage newImage = new MyImage(imageW, imageH);
             newImage.bmp = (Bitmap)img.bmp.Clone();
@@ -99,19 +167,26 @@ namespace Krasivator
                             it++;
                         }
                     }
-                    int medianR = quickSelect(matrixR, 0, m * m - 1, m * m / 2);
-                    int medianG = quickSelect(matrixG, 0, m * m - 1, m * m / 2);
-                    int medianB = quickSelect(matrixB, 0, m * m - 1, m * m / 2);
-
+                    //int medianR = quickSelect(matrixR, 0, m * m - 1, m * m / 2);
+                    //int medianG = quickSelect(matrixG, 0, m * m - 1, m * m / 2);
+                    //int medianB = quickSelect(matrixB, 0, m * m - 1, m * m / 2);
+                    int medianR = forgetfulSelect(matrixR, m * m);
+                    int medianG = forgetfulSelect(matrixG, m * m);
+                    int medianB = forgetfulSelect(matrixB, m * m);
                     newImage.setPixel(j, i, medianR, medianG, medianB);
                 }
             }
             img.bmp = (Bitmap)newImage.bmp.Clone();
+
+            timeResult = DateTime.Now.Subtract(timeStart);
+            
             unWait();
         }
         public static void Mask(MyImage img, double[,] matrix,int m,int n)
         {
             (imageW, imageH) = img.getSize();
+
+            DateTime timeStart = DateTime.Now;
             wait();
             MyImage newImage = new MyImage(imageW, imageH);
             newImage.bmp = (Bitmap)img.bmp.Clone();
@@ -162,10 +237,11 @@ namespace Krasivator
                 }
             }
             img.bmp = (Bitmap)newImage.bmp.Clone();
-            
+
+            timeResult = DateTime.Now.Subtract(timeStart);
             unWait();
         }
-        
+       
     }
     
 }

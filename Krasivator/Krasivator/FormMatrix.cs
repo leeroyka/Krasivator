@@ -50,6 +50,12 @@ namespace Krasivator
                 isMouseDown = true;
             }
         }
+        TimeSpan result;
+        public double getTime()
+        {
+
+            return result.TotalMilliseconds;
+        }
 
         private void menuStrip1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -138,7 +144,8 @@ namespace Krasivator
                         arr[i, j] = Double.Parse(s[j]);
                     }
                 }
-                
+
+                result = MatrixProcessing.timeResult;
                 MatrixProcessing.Mask(img,arr,m,n);
             }
             if(radioButton2.Checked)
@@ -147,6 +154,7 @@ namespace Krasivator
                 if (param % 2 == 0)
                     param++;
                 MatrixProcessing.Median(img, param);
+                result = MatrixProcessing.timeResult;
             }
             this.Close();
         }

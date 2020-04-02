@@ -67,13 +67,14 @@
             this.btnNoise = new System.Windows.Forms.Button();
             this.btnCurves = new System.Windows.Forms.Button();
             this.btnBin = new System.Windows.Forms.Button();
+            this.btnMatrix = new System.Windows.Forms.Button();
             this.debug = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCurve2 = new System.Windows.Forms.PictureBox();
             this.btnCurve1 = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnMatrix = new System.Windows.Forms.Button();
+            this.btnFreq = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -489,9 +490,10 @@
             this.panelRightEffects.Controls.Add(this.btnCurves);
             this.panelRightEffects.Controls.Add(this.btnBin);
             this.panelRightEffects.Controls.Add(this.btnMatrix);
+            this.panelRightEffects.Controls.Add(this.btnFreq);
             this.panelRightEffects.Location = new System.Drawing.Point(3, 311);
             this.panelRightEffects.Name = "panelRightEffects";
-            this.panelRightEffects.Size = new System.Drawing.Size(206, 222);
+            this.panelRightEffects.Size = new System.Drawing.Size(206, 255);
             this.panelRightEffects.TabIndex = 4;
             // 
             // btnBright
@@ -574,11 +576,27 @@
             this.btnBin.UseVisualStyleBackColor = true;
             this.btnBin.Click += new System.EventHandler(this.btnBin_Click);
             // 
+            // btnMatrix
+            // 
+            this.btnMatrix.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMatrix.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnMatrix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMatrix.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnMatrix.ForeColor = System.Drawing.Color.White;
+            this.btnMatrix.Location = new System.Drawing.Point(8, 183);
+            this.btnMatrix.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnMatrix.Name = "btnMatrix";
+            this.btnMatrix.Size = new System.Drawing.Size(188, 30);
+            this.btnMatrix.TabIndex = 1;
+            this.btnMatrix.Text = "Матричные фильтры";
+            this.btnMatrix.UseVisualStyleBackColor = true;
+            this.btnMatrix.Click += new System.EventHandler(this.btnMatrix_Click);
+            // 
             // debug
             // 
             this.debug.AutoSize = true;
-            this.debug.ForeColor = System.Drawing.Color.Black;
-            this.debug.Location = new System.Drawing.Point(3, 536);
+            this.debug.ForeColor = System.Drawing.Color.White;
+            this.debug.Location = new System.Drawing.Point(3, 569);
             this.debug.Name = "debug";
             this.debug.Size = new System.Drawing.Size(39, 13);
             this.debug.TabIndex = 6;
@@ -634,21 +652,21 @@
             this.btnCurve1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseMove);
             this.btnCurve1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnCurve1_MouseUp);
             // 
-            // btnMatrix
+            // btnFreq
             // 
-            this.btnMatrix.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMatrix.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnMatrix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMatrix.Font = new System.Drawing.Font("Candara", 9F);
-            this.btnMatrix.ForeColor = System.Drawing.Color.White;
-            this.btnMatrix.Location = new System.Drawing.Point(8, 183);
-            this.btnMatrix.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
-            this.btnMatrix.Name = "btnMatrix";
-            this.btnMatrix.Size = new System.Drawing.Size(188, 30);
-            this.btnMatrix.TabIndex = 1;
-            this.btnMatrix.Text = "Матричные фильтры";
-            this.btnMatrix.UseVisualStyleBackColor = true;
-            this.btnMatrix.Click += new System.EventHandler(this.btnMatrix_Click);
+            this.btnFreq.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFreq.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnFreq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFreq.Font = new System.Drawing.Font("Candara", 9F);
+            this.btnFreq.ForeColor = System.Drawing.Color.White;
+            this.btnFreq.Location = new System.Drawing.Point(8, 219);
+            this.btnFreq.Margin = new System.Windows.Forms.Padding(8, 3, 3, 3);
+            this.btnFreq.Name = "btnFreq";
+            this.btnFreq.Size = new System.Drawing.Size(188, 30);
+            this.btnFreq.TabIndex = 1;
+            this.btnFreq.Text = "Частотные фильтры";
+            this.btnFreq.UseVisualStyleBackColor = true;
+            this.btnFreq.Click += new System.EventHandler(this.btnFreq_Click);
             // 
             // Form1
             // 
@@ -742,6 +760,7 @@
         private System.Windows.Forms.PictureBox btnCurve2;
         private System.Windows.Forms.Button btnBin;
         private System.Windows.Forms.Button btnMatrix;
+        private System.Windows.Forms.Button btnFreq;
     }
 }
 

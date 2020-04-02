@@ -172,6 +172,7 @@ namespace Krasivator
             btnCurves.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnBin.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnMatrix.BackColor = Color.FromArgb(255, 42, 83, 120);
+            btnFreq.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst1.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst2.BackColor = Color.FromArgb(255, 42, 83, 120);
             btnRightInst3.BackColor = Color.FromArgb(255, 42, 83, 120);
@@ -958,6 +959,22 @@ namespace Krasivator
             this.Opacity = 1;
             if (frm.DialogResult == DialogResult.OK)
             {
+                debug.Text = frm.getTime().ToString()+"ms";
+                saveImage(frm.getImage());
+            }
+        }
+
+        private void btnFreq_Click(object sender, EventArgs e)
+        {
+            this.Opacity = .75;
+            MyImage newImage = new MyImage(imageW, imageH);
+            newImage.bmp = (Bitmap)images.Last().bmp.Clone();
+            FormFreq frm = new FormFreq(newImage);
+            frm.ShowDialog();
+            this.Opacity = 1;
+            if (frm.DialogResult == DialogResult.OK)
+            {
+
                 saveImage(frm.getImage());
             }
         }

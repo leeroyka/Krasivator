@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +81,12 @@
     <Compile Include="FormCurves.Designer.cs">
       <DependentUpon>FormCurves.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFreq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFreq.Designer.cs">
+      <DependentUpon>FormFreq.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMatrix.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +99,7 @@
     <Compile Include="FormWait.Designer.cs">
       <DependentUpon>FormWait.cs</DependentUpon>
     </Compile>
+    <Compile Include="FreqFilter.cs" />
     <Compile Include="MatrixProcessing.cs" />
     <Compile Include="MyImage.cs" />
     <Compile Include="Program.cs" />
@@ -111,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCurves.resx">
       <DependentUpon>FormCurves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFreq.resx">
+      <DependentUpon>FormFreq.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatrix.resx">
       <DependentUpon>FormMatrix.cs</DependentUpon>

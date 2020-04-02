@@ -26,3 +26,4 @@ E:\krasivator\Krasivator\obj\Debug\Krasivator.exe
 E:\krasivator\Krasivator\obj\Debug\Krasivator.pdb
 C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.FormBin.resources
 C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.FormMatrix.resources
+C:\Users\Павел\Documents\git\Krasivator\Krasivator\Krasivator\obj\Debug\Krasivator.FormFreq.resources
