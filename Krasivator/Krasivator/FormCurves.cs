@@ -713,7 +713,7 @@ namespace Krasivator
             d1 = tD1.Value;
             d2 = tD2.Value;
             matrixColor = new bool[256, 256, 256];
-            double deltaV = 0.05;
+            double deltaV = 0.15;
             for(int s=100;s>=0;s--)
             {
                 for(double h=0;h<360;h=h+25.0/(s+0.1))
