@@ -93,6 +93,12 @@
     <Compile Include="FormMatrix.Designer.cs">
       <DependentUpon>FormMatrix.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPipett.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPipett.Designer.cs">
+      <DependentUpon>FormPipett.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWait.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatrix.resx">
       <DependentUpon>FormMatrix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPipett.resx">
+      <DependentUpon>FormPipett.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWait.resx">
       <DependentUpon>FormWait.cs</DependentUpon>

@@ -19,7 +19,7 @@ namespace Krasivator
         int[] outputG;
         int[] outputB;
         int[] output;
-        MyImage img,circle;
+        MyImage img,circle,binImg;
 
         int maxR = 0, maxG = 0, maxB = 0;
         public FormCurves(MyImage image)
@@ -33,8 +33,11 @@ namespace Krasivator
             xToolStripMenuItem.ForeColor = Color.FromArgb(255, 87, 102, 115);
             button1.BackColor = Color.FromArgb(255, 39, 105, 153);
             button2.BackColor = Color.FromArgb(255, 39, 105, 153);
+            button3.BackColor = Color.FromArgb(255, 39, 105, 153);
             img = image;
             circle = new MyImage(201, 201);
+            var (w, h) = img.getSize();
+            binImg = new MyImage(w, h);
             maxR = 0;
             maxG = 0;
             maxB = 0;
@@ -265,6 +268,15 @@ namespace Krasivator
 
             this.Close();
         }
+        public static void ColorToHSV(Color color, out double hue, out double saturation, out double value)
+        {
+            int max = Math.Max(color.R, Math.Max(color.G, color.B));
+            int min = Math.Min(color.R, Math.Min(color.G, color.B));
+
+            hue = color.GetHue();
+            saturation = (max == 0) ? 0 : 1d - (1d * min / max);
+            value = max / 255d;
+        }
         public static Color ColorFromHSV(double hue, double saturation, double value)
         {
             int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
@@ -393,7 +405,7 @@ namespace Krasivator
                 isMouseDown = false;
             }
         }
-
+        bool[,] matrix;
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -405,42 +417,11 @@ namespace Krasivator
 
             int d = 2;
 
-            bool[,] matrix = new bool[w, h];
-            if (isArea)
-            {
-                for (int i = 0; i < h; ++i)
-                {
-
-                    double c = 50 / (double)h;
-                    wait((int)(c * i));
-                    for (int j = 0; j < w; ++j)
-                    {
-                        var (_r, _g, _b) = img.getPixel(j, i);
-                        for (int r = _r - d; r <= _r + d; r++)
-                        {
-                            for (int g = _g - d; g <= _g + d; g++)
-                            {
-                                for (int b = _b - d; b <= _b + d; b++)
-                                {
-                                    if (r > 255 || g > 255 || b > 255 || r<0 || g<0 ||b<0)
-                                        continue;
-                                    if (matrixColor[r, g, b])
-                                    {
-                                        
-
-                                        matrix[j, i] = true;
-                                        
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            
             for (int i = 0; i < h; ++i)
             {
-                double c = 50 / (double)h;
-                wait((int)(c * i)+50);
+                double c = 100 / (double)h;
+                wait((int)(c * i));
                 for (int j = 0; j < w; ++j)
                 {
 
@@ -689,7 +670,7 @@ namespace Krasivator
             {
                 button2.Text = "Не выбирать";
                 isArea = true;
-                this.Size = new Size(1185, 374);
+                this.Size = new Size(1326, 374);
                 DrawHSV();
             }
             else
@@ -704,7 +685,8 @@ namespace Krasivator
             return trackBar1.Value / 100.0;
         }
         bool[,,] matrixColor;
-        void DrawHSV()
+        double ihue, isat, ival;
+        void DrawHSV(bool isPipett=false)
         {
             double v = getValue();
             int r1, r2, d1, d2;
@@ -712,31 +694,49 @@ namespace Krasivator
             r2 = tR2.Value;
             d1 = tD1.Value;
             d2 = tD2.Value;
+
+            if(isPipett)
+            {
+                int delta = r2 - r1;
+                r1 = Convert.ToInt32(isat*100.0) - (delta / 2);
+                r2 = Convert.ToInt32(isat * 100.0) + (delta / 2);
+                if (r1 < 0) r1 = 0;
+                if (r2 > 100) r2 = 100;
+                tR1.Value = r1;
+                tR2.Value = r2;
+                delta = d2 - d1;
+                d1 = Convert.ToInt32(ihue) - (delta / 2);
+                d2 = Convert.ToInt32(ihue) + (delta / 2);
+                if (d1 < 0) d1 = 0;
+                if (d2 > 360) d2 = 360;
+                tD1.Value = d1;
+                tD2.Value = d2;
+            }
             matrixColor = new bool[256, 256, 256];
             double deltaV = 0.15;
             for(int s=100;s>=0;s--)
             {
-                for(double h=0;h<360;h=h+25.0/(s+0.1))
+                for(double hue=0;hue<360;hue=hue+25.0/(s+0.1))
                 {
-                    if (h >= 360)
+                    if (hue >= 360)
                         break;
-                    double angle = Math.PI * h / 180.0;
+                    double angle = Math.PI * hue / 180.0;
                     int x = (int)(Math.Sin(angle) * (double)s)+100;
                     int y = (int)(Math.Cos(angle) * (double)s)+100;
                     Color p;
-                    if (s >= r1 && s <= r2 && h >= d1 && h <= d2)
+                    if (s >= r1 && s <= r2 && hue >= d1 && hue <= d2)
                     {
 
-                        p = ColorFromHSV(h, s / 100.0, v);
+                        p = ColorFromHSV(hue, s / 100.0, v);
                         matrixColor[p.R, p.G, p.B] = true;
                         for (double i=v-deltaV;i<=v+deltaV;i=i+0.01)
                         {
-                            Color r =ColorFromHSV(h, s / 100.0, i);
+                            Color r =ColorFromHSV(hue, s / 100.0, i);
                             matrixColor[r.R, r.G, r.B] = true;
                         }
                     }
                     else
-                        p = ColorFromHSV(h, s / 100.0, v - 0.8);
+                        p = ColorFromHSV(hue, s / 100.0, v - 0.8);
                     circle.setPixel(x, y, p.R, p.G, p.B);
 
                     
@@ -745,6 +745,40 @@ namespace Krasivator
             }
 
             picCircle.Image = circle.bmp;
+
+            var (w, h) = img.getSize();
+
+            int d = 2;
+
+            matrix = new bool[w, h];
+
+            binImg = new MyImage(w, h);
+            for (int i = 0; i < h; ++i)
+            {
+
+                for (int j = 0; j < w; ++j)
+                {
+                    var (_r, _g, _b) = img.getPixel(j, i);
+                    for (int r = _r - d; r <= _r + d; r++)
+                    {
+                        for (int g = _g - d; g <= _g + d; g++)
+                        {
+                            for (int b = _b - d; b <= _b + d; b++)
+                            {
+                                if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
+                                    continue;
+                                if (matrixColor[r, g, b])
+                                {
+                                    matrix[j, i] = true;
+                                    binImg.setPixel(j, i, 255, 255, 255);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            pictureBox4.Image = binImg.bmp;
+
 
         }
 
@@ -778,6 +812,25 @@ namespace Krasivator
                 tD1.Value = tD2.Value - 1;
             }
             label11.Text = tD1.Value.ToString();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormPipett frm = new FormPipett(img);
+            frm.ShowDialog();
+            if(frm.DialogResult!=DialogResult.OK)
+            {
+                var (r, g, b) = frm.getPixel();
+                Color p = Color.FromArgb(r, g, b);
+                double hue=0, s=0, v=0;
+                ColorToHSV(p, out hue, out s, out v);
+                trackBar1.Value = Convert.ToInt32(v * 100.0);
+                ihue = hue;
+                isat = s;
+                ival = v;
+                DrawHSV(true);
+
+            }
         }
 
         private void tD2_ValueChanged(object sender, EventArgs e)
