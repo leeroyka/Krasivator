@@ -19,7 +19,7 @@ namespace Krasivator
         int[] outputG;
         int[] outputB;
         int[] output;
-        MyImage img;
+        MyImage img,circle;
 
         int maxR = 0, maxG = 0, maxB = 0;
         public FormCurves(MyImage image)
@@ -32,8 +32,9 @@ namespace Krasivator
             pictureBox3.BackColor = Color.FromArgb(255, 14, 22, 33);
             xToolStripMenuItem.ForeColor = Color.FromArgb(255, 87, 102, 115);
             button1.BackColor = Color.FromArgb(255, 39, 105, 153);
+            button2.BackColor = Color.FromArgb(255, 39, 105, 153);
             img = image;
-
+            circle = new MyImage(201, 201);
             maxR = 0;
             maxG = 0;
             maxB = 0;
@@ -46,6 +47,7 @@ namespace Krasivator
             Draw(2, btnG1.Location, btnG2.Location, btnG3.Location);
             Draw(3, btnB1.Location, btnB2.Location, btnB3.Location);
             frmWait = new FormWait();
+            this.Size = new Size(827, 374);
         }
         void countingGistogramm()
         {
@@ -263,7 +265,31 @@ namespace Krasivator
 
             this.Close();
         }
+        public static Color ColorFromHSV(double hue, double saturation, double value)
+        {
+            int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
+            double f = hue / 60 - Math.Floor(hue / 60);
+            if (value < 0) value = 0;
+            if (value > 1) value = 1;
+            value = value * 255;
+            int v = Convert.ToInt32(value);
+            int p = Convert.ToInt32(value * (1 - saturation));
+            int q = Convert.ToInt32(value * (1 - f * saturation));
+            int t = Convert.ToInt32(value * (1 - (1 - f) * saturation));
 
+            if (hi == 0)
+                return Color.FromArgb(255, v, t, p);
+            else if (hi == 1)
+                return Color.FromArgb(255, q, v, p);
+            else if (hi == 2)
+                return Color.FromArgb(255, p, v, t);
+            else if (hi == 3)
+                return Color.FromArgb(255, p, q, v);
+            else if (hi == 4)
+                return Color.FromArgb(255, t, p, v);
+            else
+                return Color.FromArgb(255, v, p, q);
+        }
         private void menuStrip1_MouseDown(object sender, MouseEventArgs e)
         {
             int xOffset;
@@ -376,21 +402,67 @@ namespace Krasivator
             Draw(2, btnG1.Location, btnG2.Location, btnG3.Location);
             Draw(3, btnB1.Location, btnB2.Location, btnB3.Location);
             var (w, h) = img.getSize();
+
+            int d = 2;
+
+            bool[,] matrix = new bool[w, h];
+            if (isArea)
+            {
+                for (int i = 0; i < h; ++i)
+                {
+
+                    double c = 50 / (double)h;
+                    wait((int)(c * i));
+                    for (int j = 0; j < w; ++j)
+                    {
+                        var (_r, _g, _b) = img.getPixel(j, i);
+                        for (int r = _r - d; r <= _r + d; r++)
+                        {
+                            for (int g = _g - d; g <= _g + d; g++)
+                            {
+                                for (int b = _b - d; b <= _b + d; b++)
+                                {
+                                    if (r > 255 || g > 255 || b > 255 || r<0 || g<0 ||b<0)
+                                        continue;
+                                    if (matrixColor[r, g, b])
+                                    {
+                                        
+
+                                        matrix[j, i] = true;
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             for (int i = 0; i < h; ++i)
             {
-                double c = 100 / (double)h;
-                frmWait.setValue((int)(c * i));
-                wait((int)(c * i));
+                double c = 50 / (double)h;
+                wait((int)(c * i)+50);
                 for (int j = 0; j < w; ++j)
                 {
 
                     
 
                     var (r, g,b) = img.getPixel(j, i);
-                    r = outputR[r];
-                    g = outputG[g];
-                    b = outputB[b];
+                    if (isArea)
+                    {
+                        if(matrix[j,i])
+                        {
 
+                            r = outputR[r];
+                            g = outputG[g];
+                            b = outputB[b];
+                        }
+                    }
+                    else
+                    {
+                        r = outputR[r];
+                        g = outputG[g];
+                        b = outputB[b];
+                    }
                     img.setPixel(j, i, r, g, b);
                 }
             }
@@ -609,6 +681,118 @@ namespace Krasivator
             btnG2.Location = new Point(123, 123);
             btnG3.Location = new Point(250, -5);
             Draw(2, btnG1.Location, btnG2.Location, btnG3.Location);
+        }
+        bool isArea=false;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!isArea)
+            {
+                button2.Text = "Не выбирать";
+                isArea = true;
+                this.Size = new Size(1185, 374);
+                DrawHSV();
+            }
+            else
+            {
+                isArea = false;
+                button2.Text = "Выбрать область преобразований";
+                this.Size = new Size(827, 374);
+            }
+        }
+        double getValue()
+        {
+            return trackBar1.Value / 100.0;
+        }
+        bool[,,] matrixColor;
+        void DrawHSV()
+        {
+            double v = getValue();
+            int r1, r2, d1, d2;
+            r1 = tR1.Value;
+            r2 = tR2.Value;
+            d1 = tD1.Value;
+            d2 = tD2.Value;
+            matrixColor = new bool[256, 256, 256];
+            double deltaV = 0.05;
+            for(int s=100;s>=0;s--)
+            {
+                for(double h=0;h<360;h=h+25.0/(s+0.1))
+                {
+                    if (h >= 360)
+                        break;
+                    double angle = Math.PI * h / 180.0;
+                    int x = (int)(Math.Sin(angle) * (double)s)+100;
+                    int y = (int)(Math.Cos(angle) * (double)s)+100;
+                    Color p;
+                    if (s >= r1 && s <= r2 && h >= d1 && h <= d2)
+                    {
+
+                        p = ColorFromHSV(h, s / 100.0, v);
+                        matrixColor[p.R, p.G, p.B] = true;
+                        for (double i=v-deltaV;i<=v+deltaV;i=i+0.01)
+                        {
+                            Color r =ColorFromHSV(h, s / 100.0, i);
+                            matrixColor[r.R, r.G, r.B] = true;
+                        }
+                    }
+                    else
+                        p = ColorFromHSV(h, s / 100.0, v - 0.8);
+                    circle.setPixel(x, y, p.R, p.G, p.B);
+
+                    
+
+                }
+            }
+
+            picCircle.Image = circle.bmp;
+
+        }
+
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+              DrawHSV();
+        }
+
+        private void tR1_ValueChanged(object sender, EventArgs e)
+        {
+            if(tR1.Value>=tR2.Value)
+            {
+                tR1.Value = tR2.Value - 1;
+            }
+            label9.Text = tR1.Value.ToString();
+        }
+
+        private void tR2_ValueChanged(object sender, EventArgs e)
+        {
+            if (tR1.Value >= tR2.Value)
+            {
+                tR2.Value = tR2.Value + 1;
+            }
+            label10.Text = tR2.Value.ToString();
+        }
+
+        private void tD1_ValueChanged(object sender, EventArgs e)
+        {
+            if (tD1.Value >= tD2.Value)
+            {
+                tD1.Value = tD2.Value - 1;
+            }
+            label11.Text = tD1.Value.ToString();
+        }
+
+        private void tD2_ValueChanged(object sender, EventArgs e)
+        {
+            if (tD1.Value >= tD2.Value)
+            {
+                tD2.Value = tD2.Value + 1;
+            }
+            label12.Text = tD2.Value.ToString();
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            label2.Text = trackBar1.Value.ToString();
+
         }
 
         private void pictureBox3_MouseDoubleClick(object sender, MouseEventArgs e)
