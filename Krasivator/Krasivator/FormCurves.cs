@@ -777,25 +777,34 @@ namespace Krasivator
                                 {
                                     //matrix[j, i] = true;
                                     //binImg.setPixel(j, i, 255, 255, 255);
-                                    int count = 0;
-                                    for(int _i=i-radius;_i<=i+radius;_i++)
+                                    if (radius == 0)
                                     {
-                                        for(int _j=j-radius;_j<=j+radius;_j++)
-                                        {
-                                            var (__r, __g,__b) = img.getPixel(_j, _i);
-                                            if(__r==r && __g ==g && __b ==b)
-                                            {
-                                                count++;
-                                            }
-                                        }
-                                    }
-                                    int area = (radius * 2 + 1) * (radius * 2 + 1);
-                                    double precent = 100.0 / (double)area*(double)count;
-                                    if(precent>=(double)pct)
-                                    {
-
                                         matrix[j, i] = true;
                                         binImg.setPixel(j, i, 255, 255, 255);
+                                    }
+                                    else
+                                    {
+
+                                        int count = 0;
+                                        for (int _i = i - radius; _i <= i + radius; _i++)
+                                        {
+                                            for (int _j = j - radius; _j <= j + radius; _j++)
+                                            {
+                                                var (__r, __g, __b) = img.getPixel(_j, _i);
+                                                if (__r == r && __g == g && __b == b)
+                                                {
+                                                    count++;
+                                                }
+                                            }
+                                        }
+                                        int area = (radius * 2 + 1) * (radius * 2 + 1);
+                                        double precent = 100.0 / (double)area * (double)count;
+                                        if (precent >= (double)pct)
+                                        {
+
+                                            matrix[j, i] = true;
+                                            binImg.setPixel(j, i, 255, 255, 255);
+                                        }
                                     }
                                 }
                             }

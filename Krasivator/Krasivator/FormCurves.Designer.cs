@@ -566,11 +566,9 @@
             // trackBar3
             // 
             this.trackBar3.Location = new System.Drawing.Point(1148, 299);
-            this.trackBar3.Minimum = 1;
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(147, 45);
             this.trackBar3.TabIndex = 7;
-            this.trackBar3.Value = 1;
             this.trackBar3.ValueChanged += new System.EventHandler(this.trackBar3_ValueChanged);
             this.trackBar3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseUp);
             // 
@@ -588,9 +586,9 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(1298, 299);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(11, 14);
+            this.label16.Size = new System.Drawing.Size(14, 14);
             this.label16.TabIndex = 8;
-            this.label16.Text = "1";
+            this.label16.Text = "0";
             // 
             // trackBar4
             // 
