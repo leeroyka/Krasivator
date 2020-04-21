@@ -694,7 +694,7 @@ namespace Krasivator
             r2 = tR2.Value;
             d1 = tD1.Value;
             d2 = tD2.Value;
-
+            wait();
             if(isPipett)
             {
                 int delta = r2 - r1;
@@ -749,6 +749,10 @@ namespace Krasivator
             var (w, h) = img.getSize();
 
             int d = 2;
+            d = trackBar2.Value;
+            int radius = trackBar3.Value;
+            int pct = trackBar4.Value;
+
 
             matrix = new bool[w, h];
 
@@ -756,6 +760,8 @@ namespace Krasivator
             for (int i = 0; i < h; ++i)
             {
 
+                double c = 100 / (double)h;
+                wait((int)(c * i));
                 for (int j = 0; j < w; ++j)
                 {
                     var (_r, _g, _b) = img.getPixel(j, i);
@@ -769,8 +775,28 @@ namespace Krasivator
                                     continue;
                                 if (matrixColor[r, g, b])
                                 {
-                                    matrix[j, i] = true;
-                                    binImg.setPixel(j, i, 255, 255, 255);
+                                    //matrix[j, i] = true;
+                                    //binImg.setPixel(j, i, 255, 255, 255);
+                                    int count = 0;
+                                    for(int _i=i-radius;_i<=i+radius;_i++)
+                                    {
+                                        for(int _j=j-radius;_j<=j+radius;_j++)
+                                        {
+                                            var (__r, __g,__b) = img.getPixel(_j, _i);
+                                            if(__r==r && __g ==g && __b ==b)
+                                            {
+                                                count++;
+                                            }
+                                        }
+                                    }
+                                    int area = (radius * 2 + 1) * (radius * 2 + 1);
+                                    double precent = 100.0 / (double)area*(double)count;
+                                    if(precent>=(double)pct)
+                                    {
+
+                                        matrix[j, i] = true;
+                                        binImg.setPixel(j, i, 255, 255, 255);
+                                    }
                                 }
                             }
                         }
@@ -778,7 +804,7 @@ namespace Krasivator
                 }
             }
             pictureBox4.Image = binImg.bmp;
-
+            unWait();
 
         }
 
@@ -803,6 +829,21 @@ namespace Krasivator
                 tR2.Value = tR2.Value + 1;
             }
             label10.Text = tR2.Value.ToString();
+        }
+
+        private void trackBar2_ValueChanged(object sender, EventArgs e)
+        {
+            label14.Text = trackBar2.Value.ToString();
+        }
+
+        private void trackBar3_ValueChanged(object sender, EventArgs e)
+        {
+            label16.Text = trackBar3.Value.ToString();
+        }
+
+        private void trackBar4_ValueChanged(object sender, EventArgs e)
+        {
+            label18.Text = trackBar4.Value.ToString()+"%";
         }
 
         private void tD1_ValueChanged(object sender, EventArgs e)
