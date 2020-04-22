@@ -788,8 +788,11 @@ namespace Krasivator
                                         int count = 0;
                                         for (int _i = i - radius; _i <= i + radius; _i++)
                                         {
+                                            if (_i < 0 || _i >= h) break;
                                             for (int _j = j - radius; _j <= j + radius; _j++)
                                             {
+                                                if (_j < 0 || _j >= w)
+                                                    break;
                                                 var (__r, __g, __b) = img.getPixel(_j, _i);
                                                 if (__r == r && __g == g && __b == b)
                                                 {
